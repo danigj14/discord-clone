@@ -1,4 +1,5 @@
 import ChannelNav from "./components/channel-nav/ChannelNav";
+import Chat from "./components/chat/Chat";
 import ServerNav from "./components/server-nav/ServerNav";
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div className="h-screen w-screen flex text-neutral-100">
       <ServerNav />
       <ChannelNav />
-      <div className="bg-zinc-700 flex-grow"></div>
+      <Chat />
     </div>
   );
 }
