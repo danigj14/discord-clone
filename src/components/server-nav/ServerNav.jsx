@@ -12,4 +12,4 @@ export default function ServerNav() {
       <ServerIcon />
     </div>
   );
-};
+}

@@ -4,4 +4,4 @@ export default function IconButton({ icon }) {
       {icon}
     </div>
   );
-};
+}

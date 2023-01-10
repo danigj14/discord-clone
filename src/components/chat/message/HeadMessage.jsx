@@ -15,4 +15,4 @@ export default function HeadMessage({ content }) {
       </div>
     </div>
   );
-};
+}

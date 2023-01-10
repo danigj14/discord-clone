@@ -5,6 +5,7 @@ module.exports = {
   },
   extends: [
     "airbnb",
+    "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "prettier",
   ],
@@ -15,6 +16,6 @@ module.exports = {
   },
   plugins: ["react"],
   rules: {
-    "react/prop-types": "off" // Don't care about typing for now until I learn TypeScript
+    "react/prop-types": "off", // Don't care about typing for now until I learn TypeScript
   },
 };
