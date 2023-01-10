@@ -3,19 +3,12 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: [
-    'airbnb',
-    'airbnb/react',
-  ],
-  overrides: [
-  ],
+  extends: ["airbnb", "airbnb/react"],
+  overrides: [],
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
+    ecmaVersion: "latest",
+    sourceType: "module",
   },
-  plugins: [
-    'react',
-  ],
-  rules: {
-  },
+  plugins: ["react"],
+  rules: {},
 };
