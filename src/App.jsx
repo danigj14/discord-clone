@@ -1,4 +1,4 @@
-import ChannelNav from "./components/server-channels/ChannelNav";
+import ChannelNav from "./components/channel-nav/ChannelNav";
 import ServerNav from "./components/server-nav/ServerNav";
 
 function App() {
