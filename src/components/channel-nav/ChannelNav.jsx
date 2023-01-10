@@ -2,7 +2,7 @@ import ChannelGroup from "./ChannelGroup";
 import ServerHeader from "./ServerHeader";
 import UserPanel from "./UserPanel";
 
-const ChannelNav = () => {
+export default function ChannelNav() {
   return (
     <div className="bg-zinc-800 w-64 h-full flex flex-col">
       <ServerHeader name="Server Name" />
@@ -13,6 +13,4 @@ const ChannelNav = () => {
       <UserPanel />
     </div>
   );
-};
-
-export default ChannelNav;
+}

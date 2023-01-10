@@ -3,12 +3,18 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ["airbnb", "airbnb/react"],
+  extends: [
+    "airbnb",
+    "plugin:react/jsx-runtime",
+    "prettier",
+  ],
   overrides: [],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
   },
   plugins: ["react"],
-  rules: {},
+  rules: {
+    "react/prop-types": "off" // Don't care about typing for now until I learn TypeScript
+  },
 };
