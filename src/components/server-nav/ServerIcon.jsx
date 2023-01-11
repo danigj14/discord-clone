@@ -1,12 +1,30 @@
-export default function ServerIcon() {
+import Tooltip from "../Tooltip";
+
+export default function ServerIcon({
+  name,
+  imgUrl,
+  selected = false,
+  onClick = () => {},
+}) {
   return (
-    <div className="w-full flex justify-center relative">
-      <img
-        className="w-12 h-12 object-cover rounded-3xl hover:rounded-2xl transition-all cursor-pointer peer"
-        src="https://cdn.vox-cdn.com/thumbor/a3kFdZvmK6-lnx68-hAtOpoglTg=/0x0:1600x946/1200x800/filters:focal(683x473:939x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65836369/Ornn_Splash_0.0.jpg"
-        alt="Server Icon"
+    <div className="w-full flex justify-center relative items-center">
+      <button
+        style={{ backgroundImage: `url('${imgUrl}')` }}
+        className={`w-12 h-12 object-cover transition-all cursor-pointer peer bg-cover bg-center ${
+          selected ? "rounded-2xl" : "rounded-3xl hover:rounded-2xl"
+        }`}
+        type="button"
+        aria-label="Select Server"
+        onClick={onClick}
       />
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 bg-neutral-100 w-1 rounded-r-full h-0 peer-hover:h-1/2 opacity-0 peer-hover:opacity-100 transition-all" />
+      <div
+        className={`absolute left-0 top-1/2 -translate-y-1/2 bg-neutral-100 w-1 rounded-r-full transition-all ${
+          selected
+            ? "h-5/6"
+            : "h-0 peer-hover:h-1/2 opacity-0 peer-hover:opacity-100"
+        }`}
+      />
+      <Tooltip className="invisible opacity-0 peer-hover:visible peer-hover:opacity-100 transition-all text-sm" position="right">{name}</Tooltip>
     </div>
   );
 }
