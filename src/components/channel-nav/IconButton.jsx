@@ -1,7 +1,14 @@
-export default function IconButton({ icon }) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+export default function IconButton({icon, ariaLabel, onClick}) {
   return (
-    <div className="flex justify-center items-center w-8 h-9 hover:bg-neutral-700 transition-all rounded-md fill-zinc-300 cursor-pointer">
-      {icon}
-    </div>
+    <button
+      className="p-2 w-8 h-9 hover:bg-neutral-700 transition-all rounded-md fill-zinc-300 flex items-center justify-center"
+      type="button"
+      aria-label={ariaLabel}
+      onClick={onClick}
+    >
+      <FontAwesomeIcon icon={icon} />
+    </button>
   );
 }

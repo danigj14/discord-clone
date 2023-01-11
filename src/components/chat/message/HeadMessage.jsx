@@ -4,16 +4,16 @@ export default function HeadMessage({ content }) {
       <div className="w-14">
         <img
           src="https://www.leawo.com/blog/wp-content/uploads/2009/12/avatar8.jpg"
-          className="w-10 h-10 rounded-full"
+          className="w-10 h-10 rounded-full cursor-pointer"
           alt="User Avatar"
         />
       </div>
       <div className="text-sm">
         <div className="flex items-center gap-2">
-          <div className="font-bold">Username</div>
-          <div className="text-xs text-zinc-400">Today at 01:23</div>
+          <div className="font-bold cursor-pointer">Username</div>
+          <div className="text-xs text-zinc-400 select-none">Today at 01:23</div>
         </div>
-        <div>{content}</div>
+        <div className="text-sm">{content}</div>
       </div>
     </div>
   );
