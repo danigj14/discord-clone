@@ -5,13 +5,14 @@ export default function ServerIcon({
   name,
   selected = false,
   onClick = () => {},
+  showSideMark = true,
   children,
 }) {
   const [isHovering, setIsHovering] = useState(false);
 
   const buttonStyle = () => {
     const base =
-      "w-12 h-12 object-cover transition-all cursor-pointer bg-cover bg-center overflow-hidden";
+      "w-12 h-12 object-cover transition-all cursor-pointer bg-cover bg-center overflow-hidden active:translate-y-1";
 
     if (selected) return `${base} rounded-2xl`;
     return `${base} rounded-3xl hover:rounded-2xl`;
@@ -45,7 +46,7 @@ export default function ServerIcon({
       >
         {children}
       </button>
-      <div className={sideMarkStyle()} />
+      {showSideMark && <div className={sideMarkStyle()} />}
       <Tooltip className={tooltipStyle()} arrowPosition="left">
         {name}
       </Tooltip>

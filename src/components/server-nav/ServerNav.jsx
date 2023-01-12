@@ -1,13 +1,14 @@
-import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCompass,
+  faPlus,
+  faUserGroup,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import ServerIcon from "./ServerIcon";
 
 export default function ServerNav({ servers }) {
   const [selectedServer, setSelectedServer] = useState();
-
-  const directMessagesBackgroundColor =
-    selectedServer !== "directMessages" ? "bg-zinc-800" : "bg-indigo-700";
 
   return (
     <div className="bg-zinc-900 w-20 h-full flex flex-col items-center py-3 gap-3">
@@ -17,7 +18,11 @@ export default function ServerNav({ servers }) {
         selected={selectedServer === "directMessages"}
       >
         <div
-          className={`text-zinc-300 ${directMessagesBackgroundColor} h-full w-full flex justify-center items-center hover:bg-indigo-700 transition-all`}
+          className={`text-zinc-300 ${
+            selectedServer !== "directMessages"
+              ? "bg-zinc-800"
+              : "bg-indigo-700"
+          } h-full w-full flex justify-center items-center hover:bg-indigo-700 transition-all`}
         >
           <FontAwesomeIcon icon={faUserGroup} />
         </div>
@@ -38,6 +43,33 @@ export default function ServerNav({ servers }) {
           />
         </ServerIcon>
       ))}
+      <ServerIcon
+        name="Add a Server"
+        onClick={() => setSelectedServer("add")}
+        selected={selectedServer === "add"}
+        showSideMark={false}
+      >
+        <div
+          className={`text-zinc-300 text-xl ${
+            selectedServer !== "add" ? "bg-zinc-800" : "bg-emerald-600"
+          } h-full w-full flex justify-center items-center hover:bg-emerald-600 transition-all`}
+        >
+          <FontAwesomeIcon icon={faPlus} />
+        </div>
+      </ServerIcon>
+      <ServerIcon
+        name="Explore Public Servers"
+        onClick={() => setSelectedServer("explore")}
+        selected={selectedServer === "explore"}
+      >
+        <div
+          className={`text-zinc-300 text-xl ${
+            selectedServer !== "explore" ? "bg-zinc-800" : "bg-emerald-600"
+          } h-full w-full flex justify-center items-center hover:bg-emerald-600 transition-all`}
+        >
+          <FontAwesomeIcon icon={faCompass} />
+        </div>
+      </ServerIcon>
     </div>
   );
 }
