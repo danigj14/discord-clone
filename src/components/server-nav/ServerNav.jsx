@@ -1,34 +1,20 @@
+import { useState } from "react";
 import ServerIcon from "./ServerIcon";
 
-export default function ServerNav() {
+export default function ServerNav({servers}) {
+
+  const [selectedServer, setSelectedServer] = useState();
+
   return (
     <div className="bg-zinc-900 w-20 h-full flex flex-col items-center py-3 gap-3">
       <ServerIcon
         name="Direct Messages"
-        imgUrl="https://cdn.vox-cdn.com/thumbor/a3kFdZvmK6-lnx68-hAtOpoglTg=/0x0:1600x946/1200x800/filters:focal(683x473:939x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65836369/Ornn_Splash_0.0.jpg"
+        imgUrl="https://occupyfantasy.com/wp-content/uploads/2020/07/discord-logo-768x432.jpg"
+        onClick={() => setSelectedServer("directMessages")}
+        selected={selectedServer === "directMessages"}
       />
       <div className="w-1/2 h-[1px] bg-zinc-600" />
-      <ServerIcon
-        name="Direct Messages"
-        imgUrl="https://cdn.vox-cdn.com/thumbor/a3kFdZvmK6-lnx68-hAtOpoglTg=/0x0:1600x946/1200x800/filters:focal(683x473:939x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65836369/Ornn_Splash_0.0.jpg"
-      />
-      <ServerIcon
-        name="Direct Messages"
-        imgUrl="https://cdn.vox-cdn.com/thumbor/a3kFdZvmK6-lnx68-hAtOpoglTg=/0x0:1600x946/1200x800/filters:focal(683x473:939x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65836369/Ornn_Splash_0.0.jpg"
-        selected
-      />
-      <ServerIcon
-        name="Direct Messages"
-        imgUrl="https://cdn.vox-cdn.com/thumbor/a3kFdZvmK6-lnx68-hAtOpoglTg=/0x0:1600x946/1200x800/filters:focal(683x473:939x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65836369/Ornn_Splash_0.0.jpg"
-      />
-      <ServerIcon
-        name="Direct Messages"
-        imgUrl="https://cdn.vox-cdn.com/thumbor/a3kFdZvmK6-lnx68-hAtOpoglTg=/0x0:1600x946/1200x800/filters:focal(683x473:939x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65836369/Ornn_Splash_0.0.jpg"
-      />
-      <ServerIcon
-        name="Direct Messages"
-        imgUrl="https://cdn.vox-cdn.com/thumbor/a3kFdZvmK6-lnx68-hAtOpoglTg=/0x0:1600x946/1200x800/filters:focal(683x473:939x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65836369/Ornn_Splash_0.0.jpg"
-      />
+      {servers.map(server => <ServerIcon key={server.id} name={server.name} imgUrl={server.imgUrl} selected={selectedServer === server} onClick={() => setSelectedServer(server)}/>)}
     </div>
   );
 }
