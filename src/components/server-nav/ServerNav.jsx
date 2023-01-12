@@ -8,20 +8,18 @@ import { useState } from "react";
 import ServerIcon from "./ServerIcon";
 
 export default function ServerNav({ servers }) {
-  const [selectedServer, setSelectedServer] = useState();
+  const [selection, setSelection] = useState();
 
   return (
     <div className="bg-zinc-900 w-20 h-full flex flex-col items-center py-3 gap-3">
       <ServerIcon
         name="Direct Messages"
-        onClick={() => setSelectedServer("directMessages")}
-        selected={selectedServer === "directMessages"}
+        onClick={() => setSelection("directMessages")}
+        selected={selection === "directMessages"}
       >
         <div
           className={`text-zinc-300 ${
-            selectedServer !== "directMessages"
-              ? "bg-zinc-800"
-              : "bg-indigo-700"
+            selection !== "directMessages" ? "bg-zinc-800" : "bg-indigo-700"
           } h-full w-full flex justify-center items-center hover:bg-indigo-700 transition-all`}
         >
           <FontAwesomeIcon icon={faUserGroup} />
@@ -33,8 +31,8 @@ export default function ServerNav({ servers }) {
           key={server.id}
           name={server.name}
           imgUrl={server.imgUrl}
-          selected={selectedServer === server}
-          onClick={() => setSelectedServer(server)}
+          selected={selection === server}
+          onClick={() => setSelection(server)}
         >
           <img
             src={server.imgUrl}
@@ -45,13 +43,13 @@ export default function ServerNav({ servers }) {
       ))}
       <ServerIcon
         name="Add a Server"
-        onClick={() => setSelectedServer("add")}
-        selected={selectedServer === "add"}
+        onClick={() => setSelection("add")}
+        selected={selection === "add"}
         showSideMark={false}
       >
         <div
           className={`text-zinc-300 text-xl ${
-            selectedServer !== "add" ? "bg-zinc-800" : "bg-emerald-600"
+            selection !== "add" ? "bg-zinc-800" : "bg-emerald-600"
           } h-full w-full flex justify-center items-center hover:bg-emerald-600 transition-all`}
         >
           <FontAwesomeIcon icon={faPlus} />
@@ -59,12 +57,12 @@ export default function ServerNav({ servers }) {
       </ServerIcon>
       <ServerIcon
         name="Explore Public Servers"
-        onClick={() => setSelectedServer("explore")}
-        selected={selectedServer === "explore"}
+        onClick={() => setSelection("explore")}
+        selected={selection === "explore"}
       >
         <div
           className={`text-zinc-300 text-xl ${
-            selectedServer !== "explore" ? "bg-zinc-800" : "bg-emerald-600"
+            selection !== "explore" ? "bg-zinc-800" : "bg-emerald-600"
           } h-full w-full flex justify-center items-center hover:bg-emerald-600 transition-all`}
         >
           <FontAwesomeIcon icon={faCompass} />
