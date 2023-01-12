@@ -145,7 +145,13 @@ function App() {
   return (
     <div className="h-screen w-screen flex text-neutral-100">
       <ServerNav servers={TestData.servers} onSelect={setSelectedServer} />
-      <ServerChannelNav channelCategories={selectedServer.channelCategories} />
+      {selectedServer >= 0 ? (
+        <ServerChannelNav
+          channelCategories={TestData.servers[selectedServer].channelCategories}
+        />
+      ) : (
+        <ServerChannelNav />
+      )}
       <Chat />
     </div>
   );
