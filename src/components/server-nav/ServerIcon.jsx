@@ -26,6 +26,13 @@ export default function ServerIcon({
     return `${base} h-0 opacity-0`;
   };
 
+  const tooltipStyle = () => {
+    const base = "left-[100%] ml-2 transition-all";
+
+    if (isHovering) return `${base} visible opacity-100`;
+    return `${base} invisible opacity-0`;
+  };
+
   return (
     <div className="w-full flex justify-center relative items-center">
       <button
@@ -38,10 +45,7 @@ export default function ServerIcon({
         onMouseLeave={() => setIsHovering(false)}
       />
       <div className={sideMarkStyle()} />
-      <Tooltip
-        className="invisible opacity-0 peer-hover:visible peer-hover:opacity-100 transition-all text-sm"
-        position="right"
-      >
+      <Tooltip className={tooltipStyle()} arrowPosition="left">
         {name}
       </Tooltip>
     </div>
