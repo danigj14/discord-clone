@@ -7,8 +7,7 @@ const TestData = {
     {
       id: 0,
       name: "ReactJS",
-      imgUrl:
-        "https://git.ir/media/uploads/2020/05/09/reactjs_logo.jpg",
+      imgUrl: "https://git.ir/media/uploads/2020/05/09/reactjs_logo.jpg",
     },
     {
       id: 1,
@@ -28,7 +27,7 @@ const TestData = {
 function App() {
   return (
     <div className="h-screen w-screen flex text-neutral-100">
-      <ServerNav servers={TestData.servers}/>
+      <ServerNav servers={TestData.servers} />
       <ChannelNav />
       <Chat />
     </div>

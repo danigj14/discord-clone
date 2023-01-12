@@ -11,7 +11,9 @@ export default function HeadMessage({ content }) {
       <div className="text-sm">
         <div className="flex items-center gap-2">
           <div className="font-bold cursor-pointer">Username</div>
-          <div className="text-xs text-zinc-400 select-none">Today at 01:23</div>
+          <div className="text-xs text-zinc-400 select-none">
+            Today at 01:23
+          </div>
         </div>
         <div className="text-sm">{content}</div>
       </div>

@@ -20,7 +20,11 @@ export default function UserPanel() {
         </div>
       </div>
       <div className="flex">
-        <IconButton className="p-2 w-8 h-9" icon={faMicrophone} ariaLabel="Mute Microphone" />
+        <IconButton
+          className="p-2 w-8 h-9"
+          icon={faMicrophone}
+          ariaLabel="Mute Microphone"
+        />
         <IconButton icon={faHeadphones} ariaLabel="Mute Incoming Sound" />
         <IconButton icon={faGear} ariaLabel="Settings" />
       </div>
