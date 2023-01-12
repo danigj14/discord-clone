@@ -7,14 +7,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import ServerIcon from "./ServerIcon";
 
-export default function ServerNav({ servers }) {
+export default function ServerNav({ servers, onSelect }) {
   const [selection, setSelection] = useState();
+
+  const handleSelect = (newSelection) => {
+    setSelection(newSelection);
+    onSelect(newSelection);
+  };
 
   return (
     <div className="bg-zinc-900 w-20 h-full flex flex-col items-center py-3 gap-3">
       <ServerIcon
         name="Direct Messages"
-        onClick={() => setSelection("directMessages")}
+        onClick={() => handleSelect("directMessages")}
         selected={selection === "directMessages"}
       >
         <div
@@ -32,7 +37,7 @@ export default function ServerNav({ servers }) {
           name={server.name}
           imgUrl={server.imgUrl}
           selected={selection === server}
-          onClick={() => setSelection(server)}
+          onClick={() => handleSelect(server)}
         >
           <img
             src={server.imgUrl}
@@ -43,7 +48,7 @@ export default function ServerNav({ servers }) {
       ))}
       <ServerIcon
         name="Add a Server"
-        onClick={() => setSelection("add")}
+        onClick={() => handleSelect("add")}
         selected={selection === "add"}
         showSideMark={false}
       >
@@ -57,7 +62,7 @@ export default function ServerNav({ servers }) {
       </ServerIcon>
       <ServerIcon
         name="Explore Public Servers"
-        onClick={() => setSelection("explore")}
+        onClick={() => handleSelect("explore")}
         selected={selection === "explore"}
       >
         <div
