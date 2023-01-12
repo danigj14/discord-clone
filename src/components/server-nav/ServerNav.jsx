@@ -15,6 +15,7 @@ export default function ServerNav() {
       <ServerIcon
         name="Direct Messages"
         imgUrl="https://cdn.vox-cdn.com/thumbor/a3kFdZvmK6-lnx68-hAtOpoglTg=/0x0:1600x946/1200x800/filters:focal(683x473:939x729)/cdn.vox-cdn.com/uploads/chorus_image/image/65836369/Ornn_Splash_0.0.jpg"
+        selected
       />
       <ServerIcon
         name="Direct Messages"
