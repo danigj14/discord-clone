@@ -3,15 +3,15 @@ import Tooltip from "../Tooltip";
 
 export default function ServerIcon({
   name,
-  imgUrl,
   selected = false,
   onClick = () => {},
+  children,
 }) {
   const [isHovering, setIsHovering] = useState(false);
 
   const buttonStyle = () => {
     const base =
-      "w-12 h-12 object-cover transition-all cursor-pointer bg-cover bg-center";
+      "w-12 h-12 object-cover transition-all cursor-pointer bg-cover bg-center overflow-hidden";
 
     if (selected) return `${base} rounded-2xl`;
     return `${base} rounded-3xl hover:rounded-2xl`;
@@ -36,14 +36,15 @@ export default function ServerIcon({
   return (
     <div className="w-full flex justify-center relative items-center">
       <button
-        style={{ backgroundImage: `url('${imgUrl}')` }}
         className={buttonStyle()}
         type="button"
         aria-label="Select Server"
         onClick={onClick}
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
-      />
+      >
+        {children}
+      </button>
       <div className={sideMarkStyle()} />
       <Tooltip className={tooltipStyle()} arrowPosition="left">
         {name}
