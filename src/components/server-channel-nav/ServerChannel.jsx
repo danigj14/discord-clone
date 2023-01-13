@@ -1,12 +1,18 @@
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function ServerChannel({ name, selected = false }) {
+export default function ServerChannel({
+  name,
+  selected = false,
+  onClick = () => {},
+}) {
   return (
-    <div
+    <button
       className={`flex border border-zinc-800 text-zinc-400 items-center gap-3 px-2 mx-2 py-2 ${
-        selected && "bg-zinc-700"
-      } hover:bg-zinc-700 rounded-lg cursor-pointer transition-all group`}
+        selected ? "bg-zinc-700" : "hover:bg-zinc-700 hover:bg-opacity-40"
+      } rounded-lg cursor-pointer transition-all group`}
+      type="button"
+      onClick={onClick}
     >
       <FontAwesomeIcon className="h-4 fill-zinc-500" icon={faHashtag} />
       <div
@@ -16,6 +22,6 @@ export default function ServerChannel({ name, selected = false }) {
       >
         {name}
       </div>
-    </div>
+    </button>
   );
 }

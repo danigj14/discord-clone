@@ -140,14 +140,32 @@ const TestData = {
 };
 
 function App() {
-  const [selectedServer, setSelectedServer] = useState(TestData.servers[0]);
+  const [selectedServer, setSelectedServer] = useState(0);
+  const [selectedChannel, setSelectedChannel] = useState(0);
+
+  const onServerSelect = (serverId) => {
+    setSelectedServer(serverId);
+    setSelectedChannel(
+      TestData.servers.find((server) => server.id === serverId)
+        .channelCategories[0].channels[0].id
+    );
+  };
 
   return (
     <div className="h-screen w-screen flex text-neutral-100">
-      <ServerNav servers={TestData.servers} onSelect={setSelectedServer} />
+      <ServerNav
+        servers={TestData.servers}
+        onSelect={onServerSelect}
+        selected={selectedServer}
+      />
       {selectedServer >= 0 ? (
         <ServerChannelNav
-          channelCategories={TestData.servers[selectedServer].channelCategories}
+          channelCategories={
+            TestData.servers.find((server) => server.id === selectedServer)
+              .channelCategories
+          }
+          selectedChannel={selectedChannel}
+          onChannelSelect={setSelectedChannel}
         />
       ) : (
         <ServerChannelNav />

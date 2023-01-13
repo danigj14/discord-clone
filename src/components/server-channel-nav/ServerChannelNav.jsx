@@ -3,7 +3,11 @@ import ServerHeader from "./ServerHeader";
 import UserPanel from "../UserPanel";
 import ServerChannel from "./ServerChannel";
 
-export default function ServerChannelNav({ channelCategories = [] }) {
+export default function ServerChannelNav({
+  channelCategories = [],
+  selectedChannel,
+  onChannelSelect = () => {},
+}) {
   return (
     <div className="bg-zinc-800 w-64 h-full flex flex-col">
       <ServerHeader name="Server Name" />
@@ -11,7 +15,12 @@ export default function ServerChannelNav({ channelCategories = [] }) {
         {channelCategories.map((category) => (
           <ServerChannelGroup key={category.id} name={category.name}>
             {category.channels.map((channel) => (
-              <ServerChannel key={channel.id} name={channel.name} />
+              <ServerChannel
+                key={channel.id}
+                name={channel.name}
+                selected={selectedChannel === channel.id}
+                onClick={() => onChannelSelect(channel.id)}
+              />
             ))}
           </ServerChannelGroup>
         ))}
