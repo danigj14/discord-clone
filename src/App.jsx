@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ServerChannelNav from "./components/server-channel-nav/ServerChannelNav";
 import Chat from "./components/chat/Chat";
 import ServerNav from "./components/server-nav/ServerNav";
+import UserContext from "./contexts/UserContext";
+import LoginScreen from "./components/LoginScreen";
 
 const TestData = {
   servers: [
@@ -142,6 +144,7 @@ const TestData = {
 function App() {
   const [selectedServer, setSelectedServer] = useState(0);
   const [selectedChannel, setSelectedChannel] = useState(0);
+  const user = useContext(UserContext);
 
   const onServerSelect = (serverId) => {
     setSelectedServer(serverId);
@@ -152,25 +155,31 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-screen flex text-neutral-100">
-      <ServerNav
-        servers={TestData.servers}
-        onSelect={onServerSelect}
-        selected={selectedServer}
-      />
-      {selectedServer >= 0 ? (
-        <ServerChannelNav
-          channelCategories={
-            TestData.servers.find((server) => server.id === selectedServer)
-              .channelCategories
-          }
-          selectedChannel={selectedChannel}
-          onChannelSelect={setSelectedChannel}
-        />
+    <div className="h-screen w-screen flex text-zinc-100">
+      {user ? (
+        <>
+          <ServerNav
+            servers={TestData.servers}
+            onSelect={onServerSelect}
+            selected={selectedServer}
+          />
+          {selectedServer >= 0 ? (
+            <ServerChannelNav
+              channelCategories={
+                TestData.servers.find((server) => server.id === selectedServer)
+                  .channelCategories
+              }
+              selectedChannel={selectedChannel}
+              onChannelSelect={setSelectedChannel}
+            />
+          ) : (
+            <ServerChannelNav />
+          )}
+          <Chat />
+        </>
       ) : (
-        <ServerChannelNav />
+        <LoginScreen />
       )}
-      <Chat />
     </div>
   );
 }
