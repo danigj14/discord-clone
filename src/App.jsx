@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import ServerChannelNav from "./components/server-channel-nav/ServerChannelNav";
 import Chat from "./components/chat/Chat";
 import ServerNav from "./components/server-nav/ServerNav";
@@ -144,7 +144,7 @@ const TestData = {
 function App() {
   const [selectedServer, setSelectedServer] = useState(0);
   const [selectedChannel, setSelectedChannel] = useState(0);
-  const user = useContext(UserContext);
+  const [loggedUser, setLoggedUser] = useState();
 
   const onServerSelect = (serverId) => {
     setSelectedServer(serverId);
@@ -155,32 +155,35 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-screen flex text-zinc-100">
-      {user ? (
-        <>
-          <ServerNav
-            servers={TestData.servers}
-            onSelect={onServerSelect}
-            selected={selectedServer}
-          />
-          {selectedServer >= 0 ? (
-            <ServerChannelNav
-              channelCategories={
-                TestData.servers.find((server) => server.id === selectedServer)
-                  .channelCategories
-              }
-              selectedChannel={selectedChannel}
-              onChannelSelect={setSelectedChannel}
+    <UserContext.Provider value={loggedUser}>
+      <div className="h-screen w-screen flex text-zinc-100">
+        {loggedUser ? (
+          <>
+            <ServerNav
+              servers={TestData.servers}
+              onSelect={onServerSelect}
+              selected={selectedServer}
             />
-          ) : (
-            <ServerChannelNav />
-          )}
-          <Chat />
-        </>
-      ) : (
-        <LoginScreen />
-      )}
-    </div>
+            {selectedServer >= 0 ? (
+              <ServerChannelNav
+                channelCategories={
+                  TestData.servers.find(
+                    (server) => server.id === selectedServer
+                  ).channelCategories
+                }
+                selectedChannel={selectedChannel}
+                onChannelSelect={setSelectedChannel}
+              />
+            ) : (
+              <ServerChannelNav />
+            )}
+            <Chat />
+          </>
+        ) : (
+          <LoginScreen onUserLogin={setLoggedUser}/>
+        )}
+      </div>
+    </UserContext.Provider>
   );
 }
 
