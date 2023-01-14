@@ -10,7 +10,7 @@ const arrowPositionStyles = {
 export default function Tooltip({ arrowPosition, children, className }) {
   return (
     <div
-      className={`absolute whitespace-nowrap width-full bg-zinc-900 px-2 py-1 rounded-lg ${arrowPositionStyles[arrowPosition]} ${className}`}
+      className={`absolute whitespace-nowrap width-full bg-zinc-900 px-2 py-1 rounded-lg z-10 ${arrowPositionStyles[arrowPosition]} ${className}`}
     >
       {children}
     </div>
