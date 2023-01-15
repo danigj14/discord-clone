@@ -1,14 +1,5 @@
 import { useId, useState } from "react";
-
-const user1 = {
-  id: 0,
-  name: "User 1",
-};
-
-const user2 = {
-  id: 0,
-  name: "User 2",
-};
+import getUser from "../services/UserService";
 
 export default function LoginScreen({ onUserLogin }) {
   const [username, setUsername] = useState("");
@@ -22,10 +13,12 @@ export default function LoginScreen({ onUserLogin }) {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    if (username === "user1" && password === "password1") onUserLogin(user1);
-    else if (username === "user2" && password === "password2")
-      onUserLogin(user2);
-    else setIncorrectCredentials(true);
+    getUser(username, password)
+      .then((user) => {
+        if (user) onUserLogin(user);
+        else throw Error("User not found");
+      })
+      .catch(() => setIncorrectCredentials(true));
   };
 
   return (

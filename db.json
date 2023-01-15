@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": 0,
+      "username": "Thor",
+      "password": "Thor",
+      "profilePicture": "https://i.etsystatic.com/27793891/r/il/a2c365/2871234164/il_1588xN.2871234164_dnzf.jpg"
+    },
+    {
+      "id": 1,
+      "username": "Spiderman",
+      "password": "Spiderman",
+      "profilePicture": "https://avatarfiles.alphacoders.com/233/233448.jpg"
+    }
+  ]
+}
