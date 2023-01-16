@@ -4,6 +4,7 @@ import Chat from "./components/chat/Chat";
 import ServerNav from "./components/server-nav/ServerNav";
 import UserContext from "./contexts/UserContext";
 import LoginScreen from "./components/LoginScreen";
+import useUserServers from "./hooks/useUserServers";
 
 const TestData = {
   servers: [
@@ -142,9 +143,12 @@ const TestData = {
 };
 
 function App() {
+  const [loggedUser, setLoggedUser] = useState();
+
+  const { servers } = useUserServers(loggedUser?.id);
+
   const [selectedServer, setSelectedServer] = useState(0);
   const [selectedChannel, setSelectedChannel] = useState(0);
-  const [loggedUser, setLoggedUser] = useState();
 
   const onServerSelect = (serverId) => {
     setSelectedServer(serverId);
@@ -160,7 +164,7 @@ function App() {
         {loggedUser ? (
           <>
             <ServerNav
-              servers={TestData.servers}
+              servers={servers}
               onSelect={onServerSelect}
               selected={selectedServer}
             />
@@ -180,7 +184,7 @@ function App() {
             <Chat />
           </>
         ) : (
-          <LoginScreen onUserLogin={setLoggedUser}/>
+          <LoginScreen onUserLogin={setLoggedUser} />
         )}
       </div>
     </UserContext.Provider>

@@ -1,11 +1,11 @@
 import { useId, useState } from "react";
-import getUser from "../services/UserService";
+import { getUser } from "../services/DiscordCloneDataService";
 
 export default function LoginScreen({ onUserLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [incorrectCredentials, setIncorrectCredentials] = useState(false);
+  const [error, setError] = useState();
 
   const usernameInputId = useId();
   const passwordInputId = useId();
@@ -14,11 +14,8 @@ export default function LoginScreen({ onUserLogin }) {
     event.preventDefault();
 
     getUser(username, password)
-      .then((user) => {
-        if (user) onUserLogin(user);
-        else throw Error("User not found");
-      })
-      .catch(() => setIncorrectCredentials(true));
+      .then(onUserLogin)
+      .catch((err) => setError(err.message));
   };
 
   return (
@@ -52,10 +49,8 @@ export default function LoginScreen({ onUserLogin }) {
               id={passwordInputId}
             />
           </label>
-          {incorrectCredentials && (
-            <span className="text-red-600 text-left text-sm">
-              - Incorrect Login
-            </span>
+          {error && (
+            <span className="text-red-600 text-left text-sm">- {error}</span>
           )}
           <button className="bg-indigo-700 rounded-sm p-1" type="submit">
             Log In
