@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import UserPanel from "../src/components/UserPanel";
-import UserContext from "../src/contexts/UserContext";
+import UserPanel from "./UserPanel";
+import UserContext from "../contexts/UserContext";
 
 const mockUser = {
   id: 1,
