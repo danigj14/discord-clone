@@ -3,6 +3,7 @@ const getUser = async () => ({
   username: "Spiderman",
   password: "Spiderman",
   name: "Spiderman",
+  tag: "#1475",
   profilePicture: "https://avatarfiles.alphacoders.com/233/233448.jpg",
 });
 

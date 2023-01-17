@@ -20,7 +20,7 @@ export default function UserPanel() {
         />
         <div>
           <div className="font-bold">{loggedUser.name}</div>
-          <div>#1234</div>
+          <div>{loggedUser.tag}</div>
         </div>
       </div>
       <div className="flex">

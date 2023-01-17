@@ -8,6 +8,7 @@ const mockUser = {
   username: "Thor",
   password: "Thor",
   name: "Thor",
+  tag: "#1475",
   profilePicture:
     "https://i.etsystatic.com/27793891/r/il/a2c365/2871234164/il_1588xN.2871234164_dnzf.jpg",
 };
@@ -21,6 +22,7 @@ describe("asd", () => {
     );
 
     screen.getByText("Thor");
+    screen.getByText("#1475");
     screen.getByRole("img");
     const buttons = screen.queryAllByRole("button");
     expect(buttons).toHaveLength(3);
