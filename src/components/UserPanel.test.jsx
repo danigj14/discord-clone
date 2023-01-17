@@ -13,7 +13,7 @@ const mockUser = {
     "https://i.etsystatic.com/27793891/r/il/a2c365/2871234164/il_1588xN.2871234164_dnzf.jpg",
 };
 
-describe("asd", () => {
+describe("UserPanel", () => {
   it("Renders the user profile picture and 3 buttons", () => {
     render(
       <UserContext.Provider value={mockUser}>

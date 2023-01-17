@@ -35,7 +35,7 @@ export default function ServerIcon({
   };
 
   return (
-    <div className="w-full flex justify-center relative items-center">
+    <li className="w-full flex justify-center relative items-center">
       <button
         className={buttonStyle()}
         type="button"
@@ -50,6 +50,6 @@ export default function ServerIcon({
       <Tooltip className={tooltipStyle()} arrowPosition="left">
         {name}
       </Tooltip>
-    </div>
+    </li>
   );
 }

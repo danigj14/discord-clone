@@ -6,9 +6,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ServerIcon from "./ServerIcon";
 
-export default function ServerNav({ servers, onSelect, selected }) {
+export default function ServerNav({ servers = [], onSelect, selected }) {
   return (
-    <div className="bg-zinc-900 w-20 h-full flex flex-col items-center py-3 gap-3">
+    <ul className="bg-zinc-900 w-20 h-full flex flex-col items-center py-3 gap-3">
       <ServerIcon
         name="Direct Messages"
         onClick={() => onSelect(-1)}
@@ -65,6 +65,6 @@ export default function ServerNav({ servers, onSelect, selected }) {
           <FontAwesomeIcon icon={faCompass} />
         </div>
       </ServerIcon>
-    </div>
+    </ul>
   );
 }

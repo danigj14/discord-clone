@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ServerChannelGroup({ name, children }) {
+export default function ServerChannelCategory({ name, children }) {
   const [open, setOpen] = useState(true);
 
   return (
