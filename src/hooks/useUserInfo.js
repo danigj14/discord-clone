@@ -5,7 +5,7 @@ export default function useUserInfo(userId) {
   const [userInfo, setUserInfo] = useState();
 
   useEffect(() => {
-    if(userId !== undefined) getUserInfo(userId).then(setUserInfo);
+    if (userId !== undefined) getUserInfo(userId).then(setUserInfo);
   }, [userId]);
 
   return userInfo;

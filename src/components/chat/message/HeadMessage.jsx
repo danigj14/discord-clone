@@ -16,7 +16,9 @@ export default function HeadMessage({ message }) {
       </div>
       <div className="text-sm flex flex-col gap-1">
         <div className="flex items-center gap-2">
-          <div className="font-bold cursor-pointer">{userInfo ? userInfo.name : ""}</div>
+          <div className="font-bold cursor-pointer">
+            {userInfo ? userInfo.name : ""}
+          </div>
           <div className="text-xs text-zinc-400 select-none">
             {date.toUTCString()}
           </div>
