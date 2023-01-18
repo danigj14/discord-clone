@@ -16,13 +16,6 @@ function App() {
   const { channelCategories } = useServerChannels();
   const [selectedChannel, setSelectedChannel] = useState(0);
 
-  const onServerSelect = (server) => {
-    if (mainSelection.type === "SERVER" && mainSelection.value === server)
-      return;
-
-    setMainSelection({ type: "SERVER", value: server });
-  };
-
   return (
     <UserContext.Provider value={loggedUser}>
       <div className="h-screen w-screen flex text-zinc-100">
@@ -30,7 +23,7 @@ function App() {
           <>
             <ServerNav
               servers={servers}
-              onServerSelect={onServerSelect}
+              onSelection={setMainSelection}
               selection={mainSelection}
             />
             {mainSelection.type === "SERVER" ? (
