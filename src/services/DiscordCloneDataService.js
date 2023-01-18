@@ -66,4 +66,28 @@ const getServerChannelCategories = async () => [
   },
 ];
 
-export { getUser, getUserServers, getServerChannelCategories };
+const getServerChannelMessages = async () => [
+  {
+    id: 0,
+    userId: 0,
+    content: "Hello World! This is the first message on the channel!",
+  },
+  {
+    id: 1,
+    userId: 0,
+    content:
+      "This message is the second one, it should have a different look than the previous one.",
+  },
+  {
+    id: 2,
+    userId: 1,
+    content: "Hello! I am a different user.",
+  },
+  {
+    id: 3,
+    userId: 1,
+    content: "And I am also sending messages to this channel!",
+  },
+];
+
+export { getUser, getUserServers, getServerChannelCategories, getServerChannelMessages };
