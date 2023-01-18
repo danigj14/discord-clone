@@ -10,9 +10,9 @@ export default function ServerChannelChat({ channelName, messages = [] }) {
       <div className="flex-grow flex flex-col justify-end">
         {messages.map((message, index) => {
           if (index === 0 || message.userId !== messages[index - 1].userId)
-            return <HeadMessage content={message.content} />;
+            return <HeadMessage key={message.id} message={message} />;
 
-          return <NormalMessage key={message.id} content={message.content} />;
+          return <NormalMessage key={message.id} message={message} />;
         })}
       </div>
       <ChatInput />
