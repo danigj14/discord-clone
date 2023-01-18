@@ -19,8 +19,8 @@ export default function ServerChannelNav({
               <ServerChannel
                 key={channel.id}
                 name={channel.name}
-                selected={selectedChannel === channel.id}
-                onClick={() => onChannelSelect(channel.id)}
+                selected={selectedChannel === channel}
+                onClick={() => onChannelSelect(channel)}
               />
             ))}
           </ServerChannelGroup>

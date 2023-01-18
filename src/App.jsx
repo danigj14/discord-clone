@@ -5,7 +5,7 @@ import ServerNav from "./components/server-nav/ServerNav";
 import UserContext from "./contexts/UserContext";
 import LoginScreen from "./components/LoginScreen";
 import useUserServers from "./hooks/useUserServers";
-import useServerChannels from "./hooks/useServerChannels";
+import useSelectableServerChannels from "./hooks/useSelectableServerChannels";
 
 function App() {
   const [loggedUser, setLoggedUser] = useState();
@@ -13,10 +13,9 @@ function App() {
   const [mainSelection, setMainSelection] = useState({
     type: "DIRECT_MESSAGES",
   });
-  const { channelCategories } = useServerChannels(
+  const { channelCategories, selectedChannel, setSelectedChannel } = useSelectableServerChannels(
     mainSelection.type === "SERVER" ? mainSelection.value.id : undefined
   );
-  const [selectedChannel, setSelectedChannel] = useState(0);
 
   return (
     <UserContext.Provider value={loggedUser}>
@@ -38,7 +37,7 @@ function App() {
             ) : (
               <ServerChannelNav />
             )}
-            <Chat />
+            <Chat channelName={selectedChannel?.name} />
           </>
         ) : (
           <LoginScreen onUserLogin={setLoggedUser} />

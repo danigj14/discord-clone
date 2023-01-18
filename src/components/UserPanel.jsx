@@ -1,9 +1,7 @@
 import {
   faMicrophone,
-  faHeadphones,
   faGear,
   faMicrophoneSlash,
-  faHeadphonesSimple,
   faVolumeMute,
   faVolumeHigh,
 } from "@fortawesome/free-solid-svg-icons";
