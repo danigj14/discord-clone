@@ -14,9 +14,10 @@ function App() {
   const [mainSelection, setMainSelection] = useState({
     type: "DIRECT_MESSAGES",
   });
-  const { channelCategories, selectedChannel, setSelectedChannel } = useSelectableServerChannels(
-    mainSelection.type === "SERVER" ? mainSelection.value.id : undefined
-  );
+  const { channelCategories, selectedChannel, setSelectedChannel } =
+    useSelectableServerChannels(
+      mainSelection.type === "SERVER" ? mainSelection.value.id : undefined
+    );
   const { messages } = useServerChannelMessages(selectedChannel?.id);
 
   return (
@@ -39,7 +40,10 @@ function App() {
             ) : (
               <ServerChannelNav />
             )}
-            <ServerChannelChat channelName={selectedChannel?.name} messages={messages}/>
+            <ServerChannelChat
+              channelName={selectedChannel?.name}
+              messages={messages}
+            />
           </>
         ) : (
           <LoginScreen onUserLogin={setLoggedUser} />

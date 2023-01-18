@@ -90,4 +90,9 @@ const getServerChannelMessages = async () => [
   },
 ];
 
-export { getUser, getUserServers, getServerChannelCategories, getServerChannelMessages };
+export {
+  getUser,
+  getUserServers,
+  getServerChannelCategories,
+  getServerChannelMessages,
+};

@@ -9,7 +9,7 @@ export default function useServerChannels(serverId) {
     if (serverId !== undefined)
       getServerChannelCategories(serverId).then((categories) => {
         setChannelCategories(categories);
-        
+
         if (categories.length > 0)
           setSelectedChannel(categories[0].channels[0]);
         else setSelectedChannel(undefined);
