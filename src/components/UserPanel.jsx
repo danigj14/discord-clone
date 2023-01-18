@@ -2,13 +2,20 @@ import {
   faMicrophone,
   faHeadphones,
   faGear,
+  faMicrophoneSlash,
+  faHeadphonesSimple,
+  faVolumeMute,
+  faVolumeHigh,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../contexts/UserContext";
 import IconButton from "./IconButton";
 
 export default function UserPanel() {
   const loggedUser = useContext(UserContext);
+
+  const [microphoneMuted, setMicrophoneMuted] = useState(false);
+  const [soundMuted, setSoundMuted] = useState(false);
 
   return (
     <div className="flex gap-1 p-2 bg-zinc-900 bg-opacity-50 items-center">
@@ -24,8 +31,16 @@ export default function UserPanel() {
         </div>
       </div>
       <div className="flex">
-        <IconButton icon={faMicrophone} ariaLabel="Mute Microphone" />
-        <IconButton icon={faHeadphones} ariaLabel="Mute Incoming Sound" />
+        <IconButton
+          icon={microphoneMuted ? faMicrophoneSlash : faMicrophone}
+          ariaLabel="Mute Microphone"
+          onClick={() => setMicrophoneMuted(!microphoneMuted)}
+        />
+        <IconButton
+          icon={soundMuted ? faVolumeMute : faVolumeHigh}
+          ariaLabel="Mute Sound"
+          onClick={() => setSoundMuted(!soundMuted)}
+        />
         <IconButton icon={faGear} ariaLabel="Settings" />
       </div>
     </div>

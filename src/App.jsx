@@ -13,7 +13,9 @@ function App() {
   const [mainSelection, setMainSelection] = useState({
     type: "DIRECT_MESSAGES",
   });
-  const { channelCategories } = useServerChannels();
+  const { channelCategories } = useServerChannels(
+    mainSelection.type === "SERVER" ? mainSelection.value.id : undefined
+  );
   const [selectedChannel, setSelectedChannel] = useState(0);
 
   return (
