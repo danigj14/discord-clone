@@ -1,6 +1,6 @@
 export default function HeadMessage({ content }) {
   return (
-    <div className="px-4 py-1 hover:bg-zinc-800 flex items-center">
+    <div className="px-4 py-1 mt-2 hover:bg-zinc-800 hover:bg-opacity-25 flex items-center">
       <div className="w-14">
         <img
           src="https://www.leawo.com/blog/wp-content/uploads/2009/12/avatar8.jpg"
