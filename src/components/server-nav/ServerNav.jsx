@@ -6,17 +6,23 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ServerIcon from "./ServerIcon";
 
-export default function ServerNav({ servers = [], onSelect, selected }) {
+export default function ServerNav({
+  servers = [],
+  onSelection = () => {},
+  selection = { type: "DIRECT_MESSAGES" },
+}) {
   return (
     <ul className="bg-zinc-900 w-20 h-full flex flex-col items-center py-3 gap-3">
       <ServerIcon
+        onClick={() => onSelection({ type: "DIRECT_MESSAGES" })}
         name="Direct Messages"
-        onClick={() => onSelect(-1)}
-        selected={selected === -1}
+        selected={selection.type === "DIRECT_MESSAGES"}
       >
         <div
           className={`text-zinc-300 ${
-            selected !== -1 ? "bg-zinc-800" : "bg-indigo-700"
+            selection.type !== "DIRECT_MESSAGES"
+              ? "bg-zinc-800"
+              : "bg-indigo-700"
           } h-full w-full flex justify-center items-center hover:bg-indigo-700 transition-all`}
         >
           <FontAwesomeIcon icon={faUserGroup} />
@@ -28,8 +34,8 @@ export default function ServerNav({ servers = [], onSelect, selected }) {
           key={server.id}
           name={server.name}
           imgUrl={server.imgUrl}
-          selected={selected === server.id}
-          onClick={() => onSelect(server.id)}
+          selected={selection.type === "SERVER" && selection.value === server}
+          onClick={() => onSelection({ type: "SERVER", value: server })}
         >
           <img
             src={server.imgUrl}
@@ -40,13 +46,13 @@ export default function ServerNav({ servers = [], onSelect, selected }) {
       ))}
       <ServerIcon
         name="Add a Server"
-        onClick={() => onSelect(-2)}
-        selected={selected === -2}
+        onClick={() => onSelection({ type: "ADD_A_SERVER" })}
+        selected={selection.type === "ADD_A_SERVER"}
         showSideMark={false}
       >
         <div
           className={`text-zinc-300 text-xl ${
-            selected !== -2 ? "bg-zinc-800" : "bg-emerald-600"
+            selection.type !== "ADD_A_SERVER" ? "bg-zinc-800" : "bg-emerald-600"
           } h-full w-full flex justify-center items-center hover:bg-emerald-600 transition-all`}
         >
           <FontAwesomeIcon icon={faPlus} />
@@ -54,12 +60,12 @@ export default function ServerNav({ servers = [], onSelect, selected }) {
       </ServerIcon>
       <ServerIcon
         name="Explore Public Servers"
-        onClick={() => onSelect(-3)}
-        selected={selected === -3}
+        onClick={() => onSelection({ type: "EXPLORE" })}
+        selected={selection.type === "EXPLORE"}
       >
         <div
           className={`text-zinc-300 text-xl ${
-            selected !== -3 ? "bg-zinc-800" : "bg-emerald-600"
+            selection.type !== "EXPLORE" ? "bg-zinc-800" : "bg-emerald-600"
           } h-full w-full flex justify-center items-center hover:bg-emerald-600 transition-all`}
         >
           <FontAwesomeIcon icon={faCompass} />

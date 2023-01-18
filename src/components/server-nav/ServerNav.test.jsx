@@ -43,15 +43,25 @@ describe("ServerNav", () => {
     listItems.forEach((li) => expect(li.querySelector("button")).toBeDefined);
   });
 
-  it("Calls the onSelect callback function when a server button is clicked with the server id as argument", () => {
+  it("Calls the onSelection callback function with the correct argument depending on the type of selection", () => {
     const fn = vitest.fn();
-    render(<ServerNav servers={mockServers} onSelect={fn} />);
+    render(<ServerNav servers={mockServers} onSelection={fn} />);
 
     const listItems = screen.queryAllByRole("listitem");
 
-    fireEvent.click(listItems[2].querySelector("button"));
+    fireEvent.click(listItems[0].querySelector("button"));
+    expect(fn).toBeCalledWith({ type: "DIRECT_MESSAGES" });
 
-    expect(fn).toBeCalled();
-    expect(fn).toBeCalledWith(mockServers[1].id);
+    fireEvent.click(listItems[1].querySelector("button"));
+    expect(fn).toBeCalledWith({ type: "SERVER", value: mockServers[0] });
+
+    fireEvent.click(listItems[2].querySelector("button"));
+    expect(fn).toBeCalledWith({ type: "SERVER", value: mockServers[1] });
+
+    fireEvent.click(listItems[4].querySelector("button"));
+    expect(fn).toBeCalledWith({ type: "ADD_A_SERVER" });
+
+    fireEvent.click(listItems[5].querySelector("button"));
+    expect(fn).toBeCalledWith({ type: "EXPLORE" });
   });
 });

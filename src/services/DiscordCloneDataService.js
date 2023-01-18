@@ -27,4 +27,43 @@ const getUserServers = async () => [
   },
 ];
 
-export { getUser, getUserServers };
+const getServerChannelCategories = async () => [
+  {
+    id: 0,
+    name: "Chat",
+    channels: [
+      {
+        id: 0,
+        name: "General Programming",
+      },
+      {
+        id: 1,
+        name: "ReactJS",
+      },
+    ],
+  },
+  {
+    id: 1,
+    name: "Learn",
+    channels: [
+      {
+        id: 2,
+        name: "Components",
+      },
+      {
+        id: 3,
+        name: "Props",
+      },
+      {
+        id: 4,
+        name: "State",
+      },
+      {
+        id: 5,
+        name: "Hooks",
+      },
+    ],
+  },
+];
+
+export { getUser, getUserServers, getServerChannelCategories };
