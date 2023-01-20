@@ -90,7 +90,7 @@ const getServerChannelMessages = async () => [
     id: 3,
     userId: 1,
     content: "And I am also sending messages to this channel!",
-    date: new Date("2023-01-01T03:28:21").toString(),
+    date: new Date("2023-01-01T11:01:23").toString(),
   },
 ];
 

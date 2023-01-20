@@ -6,7 +6,7 @@ import NormalMessage from "./message/NormalMessage";
 export default function ServerChannelChat({ channelName, messages = [] }) {
   return (
     <div className="bg-zinc-700 flex-grow flex flex-col">
-      <ChatHeader name={channelName} />
+      <ChatHeader channelName={channelName} />
       <div className="flex-grow flex flex-col justify-end">
         {messages.map((message, index) => {
           if (index === 0 || message.userId !== messages[index - 1].userId)
@@ -15,7 +15,7 @@ export default function ServerChannelChat({ channelName, messages = [] }) {
           return <NormalMessage key={message.id} message={message} />;
         })}
       </div>
-      <ChatInput />
+      <ChatInput channelName={channelName} />
     </div>
   );
 }
