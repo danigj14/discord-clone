@@ -14,7 +14,7 @@ const mockUser = {
 };
 
 describe("UserPanel", () => {
-  it("Renders the user profile picture and 3 buttons", () => {
+  it("Renders the user profile picture, username, usertag and 3 buttons", () => {
     render(
       <UserContext.Provider value={mockUser}>
         <UserPanel />
