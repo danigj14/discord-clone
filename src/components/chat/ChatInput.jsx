@@ -18,7 +18,7 @@ export default function ChatInput({ onMessageSent = () => {} }) {
     event.preventDefault();
     onMessageSent(message);
     setMessage("");
-  }
+  };
 
   return (
     <div className="m-4 pr-4 flex items-center bg-zinc-600 rounded-lg">

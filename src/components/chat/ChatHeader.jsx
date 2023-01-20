@@ -1,4 +1,13 @@
-import { faBellSlash, faCircleQuestion, faComments, faHashtag, faInbox, faMagnifyingGlass, faThumbTack, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBellSlash,
+  faCircleQuestion,
+  faComments,
+  faHashtag,
+  faInbox,
+  faMagnifyingGlass,
+  faThumbTack,
+  faUserGroup,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const iconButtonsClassName =
