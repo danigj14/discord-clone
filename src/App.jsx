@@ -1,55 +1,51 @@
-import { useState } from "react";
-import ServerChannelNav from "./components/server-channel-nav/ServerChannelNav";
-import ServerChannelChat from "./components/chat/ServerChannelChat";
-import ServerNav from "./components/server-nav/ServerNav";
-import UserContext from "./contexts/UserContext";
-import LoginScreen from "./components/LoginScreen";
-import useUserServers from "./hooks/useUserServers";
-import useSelectableServerChannels from "./hooks/useSelectableServerChannels";
-import useServerChannelMessages from "./hooks/useServerChannelMessages";
+import { useState, useMemo } from "react";
+import MainNav from "@/components/MainNav";
+import AuthContext from "@/contexts/AuthContext";
+import AuthScreen from "@/features/auth/components/AuthScreen";
+import DirectMessages from "./features/direct-messages/components/DirectMessages";
 
 function App() {
-  const [loggedUser, setLoggedUser] = useState();
-  const { servers } = useUserServers(loggedUser?.id);
-  const [mainSelection, setMainSelection] = useState({
-    type: "DIRECT_MESSAGES",
-  });
+  /*
+  const { servers } = useUserServers(loggedUserToken?.id);
   const { channelCategories, selectedChannel, setSelectedChannel } =
     useSelectableServerChannels(
       mainSelection.type === "SERVER" ? mainSelection.value.id : undefined
     );
   const { messages } = useServerChannelMessages(selectedChannel?.id);
+  */
+
+  const [loggedUserToken, setLoggedUserToken] = useState();
+
+  const [mainSelection, setMainSelection] = useState({
+    type: "DIRECT_MESSAGES",
+  });
+
+  const authContextMemo = useMemo(
+    () => [loggedUserToken, setLoggedUserToken],
+    [loggedUserToken, setLoggedUserToken]
+  );
 
   return (
-    <UserContext.Provider value={loggedUser}>
+    <AuthContext.Provider value={authContextMemo}>
       <div className="h-screen w-screen flex text-zinc-100">
-        {loggedUser ? (
+        {loggedUserToken ? (
           <>
-            <ServerNav
-              servers={servers}
+            <MainNav
+              servers={[]}
               onSelection={setMainSelection}
               selection={mainSelection}
             />
-            {mainSelection.type === "SERVER" ? (
-              <ServerChannelNav
-                serverName={mainSelection.value.name}
-                channelCategories={channelCategories}
-                selectedChannel={selectedChannel}
-                onChannelSelect={setSelectedChannel}
-              />
+            {mainSelection.type === "DIRECT_MESSAGES" ? (
+              <DirectMessages />
             ) : (
-              <ServerChannelNav />
+              <div />
             )}
-            <ServerChannelChat
-              channelName={selectedChannel?.name}
-              messages={messages}
-            />
           </>
         ) : (
-          <LoginScreen onUserLogin={setLoggedUser} />
+          <AuthScreen />
         )}
       </div>
-    </UserContext.Provider>
+    </AuthContext.Provider>
   );
 }
 

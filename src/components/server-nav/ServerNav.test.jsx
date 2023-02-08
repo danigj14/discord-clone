@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vitest } from "vitest";
-import ServerNav from "./ServerNav";
+import MainNav from "../MainNav";
 
 const mockServers = [
   {
@@ -24,7 +24,7 @@ const mockServers = [
 
 describe("ServerNav", () => {
   it("Renders a list of elements with the 3 default navigation elements when no server list is passed as prop", () => {
-    render(<ServerNav />);
+    render(<MainNav />);
     screen.getByRole("list");
 
     const listItems = screen.queryAllByRole("listitem");
@@ -33,7 +33,7 @@ describe("ServerNav", () => {
   });
 
   it("Renders a list of elements with the 3 default navigation elements plus all the servers passed as props. All list items should contain a button", () => {
-    render(<ServerNav servers={mockServers} />);
+    render(<MainNav servers={mockServers} />);
     screen.getByRole("list");
 
     const listItems = screen.queryAllByRole("listitem");
@@ -45,7 +45,7 @@ describe("ServerNav", () => {
 
   it("Calls the onSelection callback function with the correct argument depending on the type of selection", () => {
     const fn = vitest.fn();
-    render(<ServerNav servers={mockServers} onSelection={fn} />);
+    render(<MainNav servers={mockServers} onSelection={fn} />);
 
     const listItems = screen.queryAllByRole("listitem");
 

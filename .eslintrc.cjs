@@ -9,7 +9,16 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "prettier",
   ],
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [["@", "./src"]],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+    },
+  },
   overrides: [],
+  ignorePatterns: ["node_modules", "dist"],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",

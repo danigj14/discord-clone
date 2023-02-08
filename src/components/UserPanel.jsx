@@ -1,16 +1,16 @@
 import {
-  faMicrophone,
   faGear,
+  faMicrophone,
   faMicrophoneSlash,
-  faVolumeMute,
   faVolumeHigh,
+  faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
 import { useContext, useState } from "react";
-import UserContext from "../contexts/UserContext";
+import AuthContext from "@/contexts/AuthContext";
 import IconButton from "./IconButton";
 
 export default function UserPanel() {
-  const loggedUser = useContext(UserContext);
+  const loggedUser = useContext(AuthContext);
 
   const [microphoneMuted, setMicrophoneMuted] = useState(false);
   const [soundMuted, setSoundMuted] = useState(false);

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it } from "vitest";
-import Tooltip from "./Tooltip";
+import Tooltip from "./navigation/Tooltip";
 
 describe("Tooltip", () => {
   it("Renders the children", () => {

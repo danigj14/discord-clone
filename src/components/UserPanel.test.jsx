@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import UserPanel from "./UserPanel";
-import UserContext from "../contexts/UserContext";
+import AuthContext from "../contexts/AuthContext";
 
 const mockUser = {
   id: 1,
@@ -16,9 +16,9 @@ const mockUser = {
 describe("UserPanel", () => {
   it("Renders the user profile picture, username, usertag and 3 buttons", () => {
     render(
-      <UserContext.Provider value={mockUser}>
+      <AuthContext.Provider value={mockUser}>
         <UserPanel />
-      </UserContext.Provider>
+      </AuthContext.Provider>
     );
 
     screen.getByText("Thor");

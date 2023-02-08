@@ -4,9 +4,9 @@ import {
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ServerIcon from "./ServerIcon";
+import ServerIcon from "./server-nav/ServerIcon";
 
-export default function ServerNav({
+export default function MainNav({
   servers = [],
   onSelection = () => {},
   selection = { type: "DIRECT_MESSAGES" },

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, it } from "vitest";
-import UserContext from "../../contexts/UserContext";
+import AuthContext from "../../contexts/AuthContext";
 import ServerChannelNav from "./ServerChannelNav";
 
 const mockChannelCategories = [
@@ -37,12 +37,12 @@ const mockUser = {
 describe("ServerChannelNav", () => {
   it("Renders the channel categories passed via props, the header, and the user panel", () => {
     render(
-      <UserContext.Provider value={mockUser}>
+      <AuthContext.Provider value={mockUser}>
         <ServerChannelNav
           serverName="Server1"
           channelCategories={mockChannelCategories}
         />
-      </UserContext.Provider>
+      </AuthContext.Provider>
     );
 
     screen.getByText("Server1");

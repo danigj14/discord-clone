@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Tooltip from "../navigation/Tooltip";
+import Tooltip from "./Tooltip";
 
-export default function ServerIcon({
+export default function NavButton({
   name,
   selected = false,
   onClick = () => {},
