@@ -6,14 +6,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import useFriends from "../hooks/useFriends";
 import usePendingFriendRequests from "../hooks/usePendingFriendRequests";
 import AddFriendSection from "./AddFriendSection";
+import FriendList from "./FriendList";
 import FriendRequestList from "./FriendRequestList";
 
 export default function FriendsSection() {
   const [selection, setSelection] = useState("ONLINE");
   const { pendingFriendRequests, acceptFriendRequest, declineFriendRequest } =
     usePendingFriendRequests();
+  const { friends } = useFriends();
 
   return (
     <div>
@@ -67,6 +70,7 @@ export default function FriendsSection() {
           </button>
         </div>
       </div>
+      {selection === "ALL" && <FriendList friends={friends} />}
       {selection === "ADD_FRIEND" && <AddFriendSection />}
       {selection === "PENDING" && (
         <FriendRequestList

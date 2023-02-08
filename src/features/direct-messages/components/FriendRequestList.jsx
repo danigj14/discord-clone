@@ -30,7 +30,7 @@ function FriendRequestListItem({
 }) {
   const userInfo = useUserInfo(request.sender);
   return (
-    <div className="py-2 flex items-center gap-4">
+    <li className="py-2 flex items-center gap-4">
       {userInfo?.profilePicture ? (
         <UserAvatar imgUrl={userInfo.profilePicture} />
       ) : (
@@ -56,6 +56,6 @@ function FriendRequestListItem({
       >
         <FontAwesomeIcon icon={faXmark} />
       </button>
-    </div>
+    </li>
   );
 }

@@ -1,7 +1,8 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import AuthContext from "@/contexts/AuthContext";
 import loginRequest from "@/features/auth/api/login";
 import registerRequest from "@/features/auth/api/register";
+import { decodeToken } from "react-jwt";
 
 export default function useAuth() {
   const [authToken, setAuthToken] = useContext(AuthContext);
@@ -18,5 +19,7 @@ export default function useAuth() {
     setAuthToken(undefined);
   };
 
-  return { authToken, login, register, logout };
+  const userData = useMemo(() => authToken ? decodeToken(authToken) : {}, [authToken]);
+
+  return { authToken, userData, login, register, logout };
 }
