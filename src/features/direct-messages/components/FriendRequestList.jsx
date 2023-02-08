@@ -1,14 +1,23 @@
 import DefaultAvatar from "@/components/DefaultAvatar";
 import UserAvatar from "@/components/UserAvatar";
 import useUserInfo from "@/hooks/useUserInfo";
-import { faCheck, faX } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function FriendRequestList({ requests }) {
+export default function FriendRequestList({
+  requests = [],
+  onRequestAccept = () => {},
+  onRequestDecline = () => {},
+}) {
   return (
     <ul className="py-2 px-6 flex flex-col divide-y divide-zinc-500">
       {requests.map((request) => (
-        <FriendRequestListItem key={request._id} request={request} />
+        <FriendRequestListItem
+          key={request._id}
+          request={request}
+          onAccept={onRequestAccept}
+          onDecline={onRequestDecline}
+        />
       ))}
     </ul>
   );
@@ -19,7 +28,7 @@ function FriendRequestListItem({
   onAccept = () => {},
   onDecline = () => {},
 }) {
-  const userInfo = useUserInfo(request.sender_id);
+  const userInfo = useUserInfo(request.sender);
   return (
     <div className="py-2 flex items-center gap-4">
       {userInfo?.profilePicture ? (
@@ -32,20 +41,20 @@ function FriendRequestListItem({
         <span className="text-xs">Incoming Friend Request</span>
       </div>
       <button
-        className="text-xl w-9 h-9 bg-zinc-800 text-zinc-400 rounded-full hover:bg-green-500 hover:text-zinc-100 transition-colors"
+        className="text-lg w-8 h-8 bg-zinc-800 text-zinc-400 rounded-full hover:bg-green-500 hover:text-zinc-100 transition-colors"
         type="button"
         aria-label="Accept"
-        onClick={onAccept}
+        onClick={() => onAccept(request._id)}
       >
         <FontAwesomeIcon icon={faCheck} />
       </button>
       <button
-        className="text-xl w-9 h-9 bg-zinc-800 text-zinc-400 rounded-full hover:bg-red-500 hover:text-zinc-100 transition-colors"
+        className="text-lg w-8 h-8 bg-zinc-800 text-zinc-400 rounded-full hover:bg-red-500 hover:text-zinc-100 transition-colors"
         type="button"
         aria-label="Decline"
-        onClick={onDecline}
+        onClick={() => onDecline(request._id)}
       >
-        <FontAwesomeIcon icon={faX} />
+        <FontAwesomeIcon icon={faXmark} />
       </button>
     </div>
   );

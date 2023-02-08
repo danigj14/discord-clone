@@ -12,7 +12,8 @@ import FriendRequestList from "./FriendRequestList";
 
 export default function FriendsSection() {
   const [selection, setSelection] = useState("ONLINE");
-  const { pendingFriendRequests } = usePendingFriendRequests();
+  const { pendingFriendRequests, acceptFriendRequest, declineFriendRequest } =
+    usePendingFriendRequests();
 
   return (
     <div>
@@ -68,7 +69,11 @@ export default function FriendsSection() {
       </div>
       {selection === "ADD_FRIEND" && <AddFriendSection />}
       {selection === "PENDING" && (
-        <FriendRequestList requests={pendingFriendRequests} />
+        <FriendRequestList
+          requests={pendingFriendRequests}
+          onRequestAccept={acceptFriendRequest}
+          onRequestDecline={declineFriendRequest}
+        />
       )}
     </div>
   );

@@ -11,7 +11,7 @@ export default function AuthScreen() {
         <h1 className="text-xl font-bold mb-6 mx-auto">
           {register ? "Create New Account" : "Login To Clone Discord"}
         </h1>
-        {register ? <RegisterForm/> : <LoginForm/>}
+        {register ? <RegisterForm /> : <LoginForm />}
         <button
           className="mr-auto text-xs mt-2 underline"
           type="button"
