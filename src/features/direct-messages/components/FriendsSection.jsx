@@ -67,7 +67,9 @@ export default function FriendsSection() {
         </div>
       </div>
       {selection === "ADD_FRIEND" && <AddFriendSection />}
-      {selection === "PENDING" && <FriendRequestList requests={pendingFriendRequests}/>}
+      {selection === "PENDING" && (
+        <FriendRequestList requests={pendingFriendRequests} />
+      )}
     </div>
   );
 }
@@ -80,7 +82,7 @@ function HeaderButton({
 }) {
   return (
     <button
-      className={`px-3 ${
+      className={`px-3 py-1 text-sm ${
         selected ? "bg-zinc-600 text-zinc-100" : "text-zinc-400"
       } hover:text-zinc-300 hover:bg-zinc-600 hover:bg-opacity-75 rounded-md flex items-center justify-center`}
       type="button"
@@ -88,7 +90,7 @@ function HeaderButton({
     >
       <span>{name}</span>
       {alert ? (
-        <span className="ml-2 px-2 text-sm font-bold text-zinc-200 bg-red-500 rounded-full flex justify-center">
+        <span className="ml-2 px-2 text-xs font-bold text-zinc-200 bg-red-500 rounded-full flex justify-center">
           {alert}
         </span>
       ) : null}
@@ -99,7 +101,7 @@ function HeaderButton({
 function AddFriendButton({ selected = false, onClick = () => {} }) {
   return (
     <button
-      className={`px-3 ${
+      className={`px-3 py-1 text-sm ${
         selected ? "text-green-500" : "bg-green-700"
       } rounded-md`}
       type="button"
