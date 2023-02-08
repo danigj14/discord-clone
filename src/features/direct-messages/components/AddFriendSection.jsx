@@ -8,9 +8,7 @@ export default function AddFriendSection() {
   const onSubmit = (event) => {
     event.preventDefault();
 
-    createFriendRequest(authToken, email).then(response => {
-      console.log(response);
-    })
+    createFriendRequest(authToken, email);
   }
   return (
     <div className="p-4 flex flex-col gap-2">

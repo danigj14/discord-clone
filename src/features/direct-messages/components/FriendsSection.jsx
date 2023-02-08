@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import usePendingFriendRequests from "../hooks/usePendingFriendRequests";
 import AddFriendSection from "./AddFriendSection";
+import FriendRequestList from "./FriendRequestList";
 
 export default function FriendsSection() {
   const [selection, setSelection] = useState("ONLINE");
@@ -33,7 +34,7 @@ export default function FriendsSection() {
           />
           <HeaderButton
             name="Pending"
-            alert={pendingFriendRequests.length > 0 ? pendingFriendRequests.length : ""}
+            alert={pendingFriendRequests.length || ""}
             onClick={() => setSelection("PENDING")}
             selected={selection === "PENDING"}
           />
@@ -66,6 +67,7 @@ export default function FriendsSection() {
         </div>
       </div>
       {selection === "ADD_FRIEND" && <AddFriendSection />}
+      {selection === "PENDING" && <FriendRequestList requests={pendingFriendRequests}/>}
     </div>
   );
 }
@@ -85,7 +87,11 @@ function HeaderButton({
       onClick={onClick}
     >
       <span>{name}</span>
-      {alert ? <span className="ml-2 px-2 text-sm font-bold text-zinc-200 bg-red-500 rounded-full flex justify-center">{alert}</span> : null}
+      {alert ? (
+        <span className="ml-2 px-2 text-sm font-bold text-zinc-200 bg-red-500 rounded-full flex justify-center">
+          {alert}
+        </span>
+      ) : null}
     </button>
   );
 }

@@ -26,5 +26,6 @@ module.exports = {
   plugins: ["react"],
   rules: {
     "react/prop-types": "off", // Don't care about typing for now until I learn TypeScript
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }] // Allow _id field from MongoDB documents
   },
 };

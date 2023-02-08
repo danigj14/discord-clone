@@ -5,27 +5,20 @@ import {
   faVolumeHigh,
   faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
-import { useContext, useState } from "react";
-import AuthContext from "@/contexts/AuthContext";
+import { useState } from "react";
 import IconButton from "./IconButton";
+import DefaultAvatar from "./DefaultAvatar";
 
 export default function UserPanel() {
-  const loggedUser = useContext(AuthContext);
-
   const [microphoneMuted, setMicrophoneMuted] = useState(false);
   const [soundMuted, setSoundMuted] = useState(false);
 
   return (
     <div className="flex gap-1 p-2 bg-zinc-900 bg-opacity-50 items-center">
       <div className="flex-grow flex text-xs p-1 gap-2 items-center hover:bg-neutral-700 rounded-md transition-all cursor-pointer">
-        <img
-          src={loggedUser.profilePicture}
-          className="w-9 h-9 rounded-full"
-          alt="User Avatar"
-        />
+        <DefaultAvatar />
         <div>
-          <div className="font-bold">{loggedUser.name}</div>
-          <div>{loggedUser.tag}</div>
+          <div className="font-bold">UserEmail</div>
         </div>
       </div>
       <div className="flex">
