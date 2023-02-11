@@ -12,7 +12,7 @@ import AddFriendSection from "./AddFriendSection";
 import FriendList from "./FriendList";
 import FriendRequestList from "./FriendRequestList";
 
-export default function FriendsSection() {
+export default function FriendsSection({ onFriendOpenChatClick = () => {} }) {
   const [selection, setSelection] = useState("ONLINE");
   const { pendingFriendRequests, acceptFriendRequest, declineFriendRequest } =
     usePendingFriendRequests();
@@ -70,7 +70,9 @@ export default function FriendsSection() {
           </button>
         </div>
       </div>
-      {selection === "ALL" && <FriendList friends={friends} />}
+      {selection === "ALL" && (
+        <FriendList friends={friends} onOpenChatClick={onFriendOpenChatClick} />
+      )}
       {selection === "ADD_FRIEND" && <AddFriendSection />}
       {selection === "PENDING" && (
         <FriendRequestList

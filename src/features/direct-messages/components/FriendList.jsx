@@ -3,23 +3,39 @@ import UserAvatar from "@/components/UserAvatar";
 import { faListDots, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function FriendList({ friends = [] }) {
+export default function FriendList({
+  friends = [],
+  onOpenChatClick = () => {},
+}) {
   return (
     <ul className="py-2 px-6 flex flex-col gap-2">
       {friends.map((friend) => (
-        <FriendListItem key={friend._id} friend={friend} />
+        <FriendListItem
+          key={friend._id}
+          friend={friend}
+          onOpenChatClick={() => onOpenChatClick(friend._id)}
+        />
       ))}
     </ul>
   );
 }
 
-function FriendListItem({ friend }) {
+function FriendListItem({ friend, onOpenChatClick = () => {} }) {
+  const onKeyDown = (event) => {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      onOpenChatClick();
+    }
+  };
+
   return (
     <li>
-      <button
+      <div
         className="w-full p-3 flex justify-start items-center gap-4 hover:bg-zinc-600 rounded-xl"
-        type="button"
-        aria-label="Open Direct Message"
+        role="button"
+        tabIndex="0"
+        onKeyDown={onKeyDown}
+        onClick={onOpenChatClick}
       >
         {friend.profilePicture ? (
           <UserAvatar imgUrl={friend.profilePicture} />
@@ -43,7 +59,7 @@ function FriendListItem({ friend }) {
         >
           <FontAwesomeIcon icon={faListDots} />
         </button>
-      </button>
+      </div>
     </li>
   );
 }

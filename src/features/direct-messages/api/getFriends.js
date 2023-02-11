@@ -4,5 +4,5 @@ export default function getFriends(authToken, userId) {
     headers: {
       Authorization: `Bearer ${authToken}`,
     },
-  }).then(response => response.json());
+  }).then((response) => response.json());
 }
