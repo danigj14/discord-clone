@@ -12,8 +12,10 @@ export default function usePrivateMessages(friendId) {
   }, []);
 
   const createMessage = (text) => {
-    createPrivateMessage(authToken, friendId, text).then(newMessage => setMessages([...messages, newMessage]))
-  }
+    createPrivateMessage(authToken, friendId, text).then((newMessage) =>
+      setMessages([...messages, newMessage])
+    );
+  };
 
   return { messages, createMessage };
 }

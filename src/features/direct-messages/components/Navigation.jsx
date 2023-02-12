@@ -38,7 +38,9 @@ export default function Navigation({
           selectedShortcut={
             selection.type === "FRIEND_CHAT" ? selection.friendId : undefined
           }
-          onShortcutClick={(friendId) => onSelect({type: "FRIEND_CHAT", friendId})}
+          onShortcutClick={(friendId) =>
+            onSelect({ type: "FRIEND_CHAT", friendId })
+          }
         />
       </div>
     </div>

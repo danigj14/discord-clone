@@ -25,8 +25,12 @@ export default function DirectMessages() {
         <UserPanel />
       </div>
       <div className="bg-zinc-700 h-full flex-grow ">
-        {selection.type === "FRIENDS" && <FriendsSection onFriendOpenChatClick={onFriendOpenChatClick} />}
-        {selection.type === "FRIEND_CHAT" && <FriendChat friendId={selection.friendId}/>}
+        {selection.type === "FRIENDS" && (
+          <FriendsSection onFriendOpenChatClick={onFriendOpenChatClick} />
+        )}
+        {selection.type === "FRIEND_CHAT" && (
+          <FriendChat friendId={selection.friendId} />
+        )}
       </div>
     </>
   );
