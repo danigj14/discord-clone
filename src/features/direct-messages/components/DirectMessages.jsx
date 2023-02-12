@@ -11,7 +11,7 @@ export default function DirectMessages() {
 
   const onFriendOpenChatClick = (friendId) => {
     if (!shortcuts.includes(friendId)) addShortcut(friendId);
-    setSelection({ type: "CHAT", friendId });
+    setSelection({ type: "FRIEND_CHAT", friendId });
   };
 
   return (
