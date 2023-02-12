@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Tooltip from "./Tooltip";
 
-export default function NavButton({
+export default function MainNavButton({
   name,
   selected = false,
   onClick = () => {},

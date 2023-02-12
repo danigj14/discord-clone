@@ -4,7 +4,7 @@ import {
   faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ServerIcon from "./server-nav/ServerIcon";
+import MainNavButton from "./MainNavButton";
 
 export default function MainNav({
   servers = [],
@@ -13,7 +13,7 @@ export default function MainNav({
 }) {
   return (
     <ul className="bg-zinc-900 w-20 h-full flex flex-col items-center py-3 gap-3">
-      <ServerIcon
+      <MainNavButton
         onClick={() => onSelection({ type: "DIRECT_MESSAGES" })}
         name="Direct Messages"
         selected={selection.type === "DIRECT_MESSAGES"}
@@ -27,10 +27,10 @@ export default function MainNav({
         >
           <FontAwesomeIcon icon={faUserGroup} />
         </div>
-      </ServerIcon>
+      </MainNavButton>
       <div className="w-1/2 h-[1px] bg-zinc-600" />
       {servers.map((server) => (
-        <ServerIcon
+        <MainNavButton
           key={server.id}
           name={server.name}
           imgUrl={server.imgUrl}
@@ -42,9 +42,9 @@ export default function MainNav({
             alt="Server Icon"
             className="h-full object-cover"
           />
-        </ServerIcon>
+        </MainNavButton>
       ))}
-      <ServerIcon
+      <MainNavButton
         name="Add a Server"
         onClick={() => onSelection({ type: "ADD_A_SERVER" })}
         selected={selection.type === "ADD_A_SERVER"}
@@ -57,8 +57,8 @@ export default function MainNav({
         >
           <FontAwesomeIcon icon={faPlus} />
         </div>
-      </ServerIcon>
-      <ServerIcon
+      </MainNavButton>
+      <MainNavButton
         name="Explore Public Servers"
         onClick={() => onSelection({ type: "EXPLORE" })}
         selected={selection.type === "EXPLORE"}
@@ -70,7 +70,7 @@ export default function MainNav({
         >
           <FontAwesomeIcon icon={faCompass} />
         </div>
-      </ServerIcon>
+      </MainNavButton>
     </ul>
   );
 }
