@@ -4,18 +4,20 @@ import useUserInfo from "../../../hooks/useUserInfo";
 
 const formatDate = (date) => {
   const day = date.getDate();
-  const month = date.getMonth();
+  const month = date.getMonth() + 1; // Months start at 0, doing a +1 to make them start from 1 instead.
   const year = date.getFullYear();
   const hour = date.getHours();
   const minute = date.getMinutes();
 
-  const dateString = `${day > 9 ? day : `0${day}`}/${
-    month > 9 ? month + 1 : `0${month + 1}`
-  }/${year} ${hour % 12}:${minute > 9 ? minute : `0${minute}`} ${
-    hour >= 12 ? "PM" : "AM"
-  }`;
+  const dayString = day > 9 ? day : `0${day}`;
+  const monthString = month > 9 ? month : `0${month}`;
 
-  return dateString;
+  const hourString = hour % 12;
+  const minuteString = minute > 9 ? minute : `0${minute}`;
+
+  const timeOfDay = hour >= 12 ? "PM" : "AM";
+
+  return `${dayString}/${monthString}/${year} ${hourString}:${minuteString} ${timeOfDay}`;
 };
 
 export default function HeadMessage({ message }) {
