@@ -6,7 +6,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import useFriends from "../hooks/useFriends";
 import usePendingFriendRequests from "../hooks/usePendingFriendRequests";
 import AddFriendSection from "./AddFriendSection";
 import FriendList from "./FriendList";
@@ -16,10 +15,9 @@ export default function FriendsSection({ onFriendOpenChatClick = () => {} }) {
   const [selection, setSelection] = useState("ONLINE");
   const { pendingFriendRequests, acceptFriendRequest, declineFriendRequest } =
     usePendingFriendRequests();
-  const { friends } = useFriends();
 
   return (
-    <div>
+    <div className="h-full">
       <div className="flex h-14 py-3 px-4 items-center border-b-2 gap-5 divide-x divide-zinc-100 divide-opacity-20 border-zinc-800 border-opacity-50">
         <div>
           <FontAwesomeIcon className="text-zinc-400" icon={faUserGroup} />
@@ -71,7 +69,7 @@ export default function FriendsSection({ onFriendOpenChatClick = () => {} }) {
         </div>
       </div>
       {selection === "ALL" && (
-        <FriendList friends={friends} onOpenChatClick={onFriendOpenChatClick} />
+        <FriendList onOpenChatClick={onFriendOpenChatClick} />
       )}
       {selection === "ADD_FRIEND" && <AddFriendSection />}
       {selection === "PENDING" && (

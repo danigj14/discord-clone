@@ -1,4 +1,4 @@
-export default async function getUserInfo(authToken, userId) {
+export default async function getUserData(authToken, userId) {
   const response = await fetch(
     `${import.meta.env.VITE_API_URL}/users/${userId}`,
     {

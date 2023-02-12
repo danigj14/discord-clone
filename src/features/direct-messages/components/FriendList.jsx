@@ -1,15 +1,19 @@
 import DefaultAvatar from "@/components/DefaultAvatar";
 import UserAvatar from "@/components/UserAvatar";
-import { faListDots, faMessage } from "@fortawesome/free-solid-svg-icons";
+import {
+  faListDots,
+  faMessage,
+  faSpinner,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useFriends from "../hooks/useFriends";
 
-export default function FriendList({
-  friends = [],
-  onOpenChatClick = () => {},
-}) {
-  return (
+export default function FriendList({ onOpenChatClick = () => {} }) {
+  const friends = useFriends();
+
+  return friends.isSuccess ? (
     <ul className="py-2 px-6 flex flex-col gap-2">
-      {friends.map((friend) => (
+      {friends.data.map((friend) => (
         <FriendListItem
           key={friend._id}
           friend={friend}
@@ -17,6 +21,10 @@ export default function FriendList({
         />
       ))}
     </ul>
+  ) : (
+    <div className="h-full w-full flex justify-center items-center text-2xl">
+      <FontAwesomeIcon icon={faSpinner} spin />
+    </div>
   );
 }
 

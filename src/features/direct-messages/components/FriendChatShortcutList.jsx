@@ -1,6 +1,6 @@
 import DefaultAvatar from "@/components/DefaultAvatar";
 import UserAvatar from "@/components/UserAvatar";
-import useUserInfo from "@/hooks/useUserInfo";
+import useUserData from "@/hooks/useUserData";
 
 export default function FriendChatShortcutList({
   shortcuts,
@@ -26,7 +26,7 @@ function FriendChatShortcutItem({
   selected = false,
   onClick = () => {},
 }) {
-  const friendInfo = useUserInfo(friendId);
+  const friendInfo = useUserData(friendId);
 
   return (
     <li>
@@ -37,14 +37,14 @@ function FriendChatShortcutItem({
         type="button"
         onClick={onClick}
       >
-        {friendInfo?.profilePicture ? (
+        {friendInfo.isSuccess && friendInfo.data.profilePicture ? (
           <UserAvatar imgUrl={friendInfo.profilePicture} />
         ) : (
           <DefaultAvatar />
         )}
         <div className="flex-grow flex flex-col">
           <span className="font-bold text-sm text-ellipsis text-left">
-            {friendInfo?.email}
+            {friendInfo.isSuccess ? friendInfo.data.email : ""}
           </span>
         </div>
       </button>

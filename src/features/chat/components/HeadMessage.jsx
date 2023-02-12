@@ -1,6 +1,6 @@
 import DefaultAvatar from "@/components/DefaultAvatar";
 import UserAvatar from "@/components/UserAvatar";
-import useUserInfo from "../../../hooks/useUserInfo";
+import useUserData from "@/hooks/useUserData";
 
 const formatDate = (date) => {
   const day = date.getDate();
@@ -21,21 +21,21 @@ const formatDate = (date) => {
 };
 
 export default function HeadMessage({ message }) {
-  const userInfo = useUserInfo(message.sender);
+  const userInfo = useUserData(message.sender);
 
   return (
     <div className="px-4 py-1 mt-2 hover:bg-zinc-800 hover:bg-opacity-25 flex items-center">
       <div className="mr-4">
-        {userInfo?.profilePicture ? (
-          <UserAvatar imgUrl={userInfo.profilePicture} />
-        ) : (
+        {userInfo.isLoading || !userInfo.data.profilePicture ? (
           <DefaultAvatar />
+        ) : (
+          <UserAvatar imgUrl={userInfo.profilePicture} />
         )}
       </div>
       <div className="text-sm flex flex-col">
         <div className="flex items-center gap-2">
           <div className="font-bold cursor-pointer">
-            {userInfo ? userInfo.email : ""}
+            {userInfo.isSuccess ? userInfo.data.email : ""}
           </div>
           <div className="text-xs text-zinc-400 select-none">
             {message ? formatDate(new Date(message.createDate)) : ""}

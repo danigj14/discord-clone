@@ -1,6 +1,6 @@
 import DefaultAvatar from "@/components/DefaultAvatar";
 import UserAvatar from "@/components/UserAvatar";
-import useUserInfo from "@/hooks/useUserInfo";
+import useUserData from "@/hooks/useUserData";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -28,16 +28,16 @@ function FriendRequestListItem({
   onAccept = () => {},
   onDecline = () => {},
 }) {
-  const userInfo = useUserInfo(request.sender);
+  const userInfo = useUserData(request.sender);
   return (
     <li className="py-2 flex items-center gap-4">
-      {userInfo?.profilePicture ? (
+      {userInfo.isSuccess && userInfo.data.profilePicture ? (
         <UserAvatar imgUrl={userInfo.profilePicture} />
       ) : (
         <DefaultAvatar />
       )}
       <div className="flex-grow flex flex-col">
-        <span className="font-bold text-sm">{userInfo?.email}</span>
+        <span className="font-bold text-sm">{userInfo.isSuccess ? userInfo.data.email : ""}</span>
         <span className="text-xs">Incoming Friend Request</span>
       </div>
       <button
