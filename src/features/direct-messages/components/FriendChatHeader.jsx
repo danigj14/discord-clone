@@ -18,10 +18,10 @@ export default function FriendChatHeader({ email }) {
         <span className="ml-2 font-bold text-sm">{email}</span>
       </div>
       <div className="flex gap-5 items-center">
-        <HeaderIconButton aria-label="Help" icon={faPhoneVolume} />
-        <HeaderIconButton aria-label="Help" icon={faVideoCamera} />
-        <HeaderIconButton aria-label="Help" icon={faThumbTack} />
-        <HeaderIconButton aria-label="Help" icon={faUserPlus} />
+        <HeaderIconButton ariaLabel="Start Voice Call" icon={faPhoneVolume} />
+        <HeaderIconButton ariaLabel="Start Video Call" icon={faVideoCamera} />
+        <HeaderIconButton ariaLabel="Pinned Messages" icon={faThumbTack} />
+        <HeaderIconButton ariaLabel="Add Friends to DM" icon={faUserPlus} />
         <div className="bg-zinc-800 px-2 text-xs rounded-md flex items-center cursor-text group">
           <input
             placeholder="Search"
@@ -32,8 +32,8 @@ export default function FriendChatHeader({ email }) {
             icon={faMagnifyingGlass}
           />
         </div>
-        <HeaderIconButton aria-label="Help" icon={faInbox} />
-        <HeaderIconButton aria-label="Help" icon={faCircleQuestion} />
+        <HeaderIconButton ariaLabel="Inbox" icon={faInbox} />
+        <HeaderIconButton ariaLabel="Help" icon={faCircleQuestion} />
       </div>
     </div>
   );

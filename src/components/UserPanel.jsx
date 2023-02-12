@@ -2,11 +2,12 @@ import {
   faGear,
   faMicrophone,
   faMicrophoneSlash,
+  faSmile,
   faVolumeHigh,
   faVolumeMute,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import IconButton from "./IconButton";
 import DefaultAvatar from "./DefaultAvatar";
 
 export default function UserPanel() {
@@ -35,5 +36,18 @@ export default function UserPanel() {
         <IconButton icon={faGear} ariaLabel="Settings" />
       </div>
     </div>
+  );
+}
+
+function IconButton({ icon = faSmile, ariaLabel = "", onClick = () => {} }) {
+  return (
+    <button
+      className="p-2 w-8 h-9 hover:bg-neutral-700 transition-all rounded-md fill-zinc-300 flex items-center justify-center"
+      type="button"
+      aria-label={ariaLabel}
+      onClick={onClick}
+    >
+      <FontAwesomeIcon icon={icon} />
+    </button>
   );
 }
