@@ -12,8 +12,10 @@ export default function useFriendChatShortcuts() {
   }, []);
 
   const addShortcut = (userId) => {
-    createFriendChatShortcut(authToken, userData._id, userId).then(() => setShortcuts([...shortcuts, userId]));
-  }
+    createFriendChatShortcut(authToken, userData._id, userId).then(() =>
+      setShortcuts([...shortcuts, userId])
+    );
+  };
 
   return { shortcuts, addShortcut };
 }

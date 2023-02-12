@@ -1,8 +1,10 @@
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FriendChatShortcutList from "./FriendChatShortcutList";
 
 export default function Navigation({
   selection = { type: "FRIENDS" },
+  friendChatShortcuts = [],
   onSelect = () => {},
 }) {
   return (
@@ -15,7 +17,7 @@ export default function Navigation({
           Find or start a conversation
         </button>
       </div>
-      <div className="px-2 flex flex-col">
+      <div className="px-2 flex flex-col gap-2 ">
         <button
           className={`py-2 px-4 flex items-center ${
             selection.type === "FRIENDS"
@@ -28,9 +30,16 @@ export default function Navigation({
           <FontAwesomeIcon icon={faUserGroup} />
           <span className="ml-4">Friends</span>
         </button>
-        <div className="mt-4 px-2 text-zinc-400 uppercase text-xs">
+        <div className="mt-2 px-2 text-zinc-400 uppercase text-xs">
           Direct Messages
         </div>
+        <FriendChatShortcutList
+          shortcuts={friendChatShortcuts}
+          selectedShortcut={
+            selection.type === "FRIEND_CHAT" ? selection.friendId : undefined
+          }
+          onShortcutClick={(friendId) => onSelect({type: "FRIEND_CHAT", friendId})}
+        />
       </div>
     </div>
   );

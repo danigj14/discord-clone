@@ -1,6 +1,6 @@
 import ChatHeader from "./ChatHeader";
-import ChatInput from "./ChatInput";
-import HeadMessage from "./message/HeadMessage";
+import ChatInput from "../../features/chat/components/ChatInput";
+import HeadMessage from "../../features/chat/components/HeadMessage";
 import NormalMessage from "./message/NormalMessage";
 
 export default function ServerChannelChat({ channelName, messages = [] }) {

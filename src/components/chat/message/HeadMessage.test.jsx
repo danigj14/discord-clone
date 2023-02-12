@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { describe, it, vitest } from "vitest";
 import { getUserInfo } from "../../../services/DiscordCloneDataService";
-import HeadMessage from "./HeadMessage";
+import HeadMessage from "../../../features/chat/components/HeadMessage";
 
 const mockMessage = {
   id: 0,

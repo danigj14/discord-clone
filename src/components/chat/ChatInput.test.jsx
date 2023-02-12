@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import ChatInput from "./ChatInput";
+import ChatInput from "../../features/chat/components/ChatInput";
 
 describe("ChatInput", () => {
   it("Renders an input field and 5 buttons", () => {

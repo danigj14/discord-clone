@@ -11,12 +11,12 @@ import { useState } from "react";
 const iconButtonsClassName =
   "h-5 text-zinc-300 hover:text-zinc-100 cursor-pointer";
 
-export default function ChatInput({ channelName, onMessageSent = () => {} }) {
+export default function ChatInput({ chatName, onMessageSend = () => {} }) {
   const [message, setMessage] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
-    onMessageSent(message);
+    onMessageSend(message);
     setMessage("");
   };
 
@@ -32,7 +32,7 @@ export default function ChatInput({ channelName, onMessageSent = () => {} }) {
         <input
           type="text"
           className="w-full bg-zinc-600 flex-grow focus:outline-none"
-          placeholder={`Message #${channelName}`}
+          placeholder={`Message ${chatName}`}
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />

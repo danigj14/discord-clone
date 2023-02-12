@@ -1,6 +1,7 @@
 import UserPanel from "@/components/UserPanel";
 import { useState } from "react";
 import useFriendChatShortcuts from "../hooks/useFriendChatShortcuts";
+import FriendChat from "./FriendChat";
 import FriendsSection from "./FriendsSection";
 import Navigation from "./Navigation";
 
@@ -19,12 +20,13 @@ export default function DirectMessages() {
         <Navigation
           selection={selection}
           onSelect={setSelection}
-          chatShortcuts={shortcuts}
+          friendChatShortcuts={shortcuts}
         />
         <UserPanel />
       </div>
-      <div className="bg-zinc-700 flex-grow">
-        <FriendsSection onFriendOpenChatClick={onFriendOpenChatClick} />
+      <div className="bg-zinc-700 h-full flex-grow ">
+        {selection.type === "FRIENDS" && <FriendsSection onFriendOpenChatClick={onFriendOpenChatClick} />}
+        {selection.type === "FRIEND_CHAT" && <FriendChat friendId={selection.friendId}/>}
       </div>
     </>
   );

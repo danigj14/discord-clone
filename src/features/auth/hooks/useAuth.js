@@ -19,7 +19,10 @@ export default function useAuth() {
     setAuthToken(undefined);
   };
 
-  const userData = useMemo(() => authToken ? decodeToken(authToken) : {}, [authToken]);
+  const userData = useMemo(
+    () => (authToken ? decodeToken(authToken) : {}),
+    [authToken]
+  );
 
   return { authToken, userData, login, register, logout };
 }
