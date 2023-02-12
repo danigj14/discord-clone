@@ -38,7 +38,7 @@ function App() {
             {mainSelection.type === "DIRECT_MESSAGES" ? (
               <DirectMessages />
             ) : (
-              <div />
+              <div className="flex-grow bg-zinc-800"/>
             )}
           </>
         ) : (
