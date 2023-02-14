@@ -1,3 +1,5 @@
+import useAuth from "@/features/auth/hooks/useAuth";
+import useUserData from "@/hooks/useUserData";
 import {
   faGear,
   faMicrophone,
@@ -11,18 +13,20 @@ import { useState } from "react";
 import DefaultAvatar from "./DefaultAvatar";
 
 export default function UserPanel() {
+  const { userData } = useAuth();
+  const userQuery = useUserData(userData._id);
   const [microphoneMuted, setMicrophoneMuted] = useState(false);
   const [soundMuted, setSoundMuted] = useState(false);
 
   return (
     <div className="flex gap-1 p-2 bg-zinc-900 bg-opacity-50 items-center">
-      <div className="flex-grow flex text-xs p-1 gap-2 items-center hover:bg-neutral-700 rounded-md transition-all cursor-pointer">
+      <div className="w-3/5 flex text-xs p-1 gap-2 items-center hover:bg-neutral-700 rounded-md transition-all cursor-pointer overflow-hidden">
         <DefaultAvatar />
-        <div>
-          <div className="font-bold">UserEmail</div>
-        </div>
+        <span className="font-bold">
+          {userQuery.isSuccess ? userQuery.data.email : ""}
+        </span>
       </div>
-      <div className="flex">
+      <div className="w-2/5 flex">
         <IconButton
           icon={microphoneMuted ? faMicrophoneSlash : faMicrophone}
           ariaLabel="Mute Microphone"
