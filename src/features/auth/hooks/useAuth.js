@@ -8,11 +8,11 @@ export default function useAuth() {
   const [authToken, setAuthToken] = useContext(AuthContext);
 
   const login = (email, password) => {
-    loginRequest(email, password).then((token) => setAuthToken(token));
+    loginRequest(email, password).then((data) => setAuthToken(data.token));
   };
 
   const register = (email, password) => {
-    registerRequest(email, password).then((token) => setAuthToken(token));
+    registerRequest(email, password).then((data) => setAuthToken(data.token));
   };
 
   const logout = () => {

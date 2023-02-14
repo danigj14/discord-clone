@@ -1,5 +1,7 @@
-export default async function getPrivateMessages(authToken, friendId) {
-  const response = await fetch(
+import handleResponse from "@/api/handleResponse";
+
+export default function getPrivateMessages(authToken, friendId) {
+  return fetch(
     `${import.meta.env.VITE_API_URL}/private-messages/users/${friendId}`,
     {
       method: "GET",
@@ -7,7 +9,5 @@ export default async function getPrivateMessages(authToken, friendId) {
         Authorization: `Bearer ${authToken}`,
       },
     }
-  );
-
-  return response.json();
+  ).then(handleResponse);
 }

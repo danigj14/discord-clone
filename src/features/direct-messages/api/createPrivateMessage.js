@@ -1,3 +1,5 @@
+import handleResponse from "@/api/handleResponse";
+
 export default function createPrivateMessage(authToken, friendId, text) {
   return fetch(
     `${import.meta.env.VITE_API_URL}/private-messages/users/${friendId}`,
@@ -9,5 +11,5 @@ export default function createPrivateMessage(authToken, friendId, text) {
       },
       body: JSON.stringify({ text }),
     }
-  ).then((response) => response.json());
+  ).then(handleResponse);
 }

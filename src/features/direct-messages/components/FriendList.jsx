@@ -1,10 +1,7 @@
 import DefaultAvatar from "@/components/DefaultAvatar";
+import LoadingSpinner from "@/components/LoadingSpinner";
 import UserAvatar from "@/components/UserAvatar";
-import {
-  faListDots,
-  faMessage,
-  faSpinner,
-} from "@fortawesome/free-solid-svg-icons";
+import { faListDots, faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useFriends from "../hooks/useFriends";
 
@@ -22,9 +19,7 @@ export default function FriendList({ onOpenChatClick = () => {} }) {
       ))}
     </ul>
   ) : (
-    <div className="h-full w-full flex justify-center items-center text-2xl">
-      <FontAwesomeIcon icon={faSpinner} spin />
-    </div>
+    <LoadingSpinner />
   );
 }
 

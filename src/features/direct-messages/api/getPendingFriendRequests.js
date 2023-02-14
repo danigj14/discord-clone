@@ -1,13 +1,10 @@
-export default async function getPendingFriendRequests(authToken) {
-  const response = await fetch(
-    `${import.meta.env.VITE_API_URL}/friend-requests`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    }
-  );
+import handleResponse from "@/api/handleResponse";
 
-  return response.json();
+export default function getPendingFriendRequests(authToken) {
+  return fetch(`${import.meta.env.VITE_API_URL}/friend-requests`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  }).then(handleResponse);
 }

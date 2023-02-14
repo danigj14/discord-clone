@@ -1,5 +1,5 @@
 import useAuth from "@/features/auth/hooks/useAuth";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import getFriends from "../api/getFriends";
 
 export default function useFriends() {

@@ -37,7 +37,9 @@ function FriendRequestListItem({
         <DefaultAvatar />
       )}
       <div className="flex-grow flex flex-col">
-        <span className="font-bold text-sm">{userInfo.isSuccess ? userInfo.data.email : ""}</span>
+        <span className="font-bold text-sm">
+          {userInfo.isSuccess ? userInfo.data.email : ""}
+        </span>
         <span className="text-xs">Incoming Friend Request</span>
       </div>
       <button

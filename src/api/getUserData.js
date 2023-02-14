@@ -1,13 +1,10 @@
-export default async function getUserData(authToken, userId) {
-  const response = await fetch(
-    `${import.meta.env.VITE_API_URL}/users/${userId}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    }
-  );
+import handleResponse from "./handleResponse";
 
-  return response.json();
+export default function getUserData(authToken, userId) {
+  return fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+  }).then(handleResponse);
 }

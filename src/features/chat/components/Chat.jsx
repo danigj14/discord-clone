@@ -1,3 +1,4 @@
+import React from "react";
 import ChatInput from "./ChatInput";
 import DateLine from "./DateLine";
 import HeadMessage from "./HeadMessage";
@@ -13,39 +14,41 @@ export default function Chat({
   onMessageSend = () => {},
 }) {
   return (
-    <div className="bg-zinc-700 flex-grow flex flex-col">
-      <div className="flex-grow flex flex-col justify-end">
-        {messages.map((message, index) => {
-          if (index === 0) {
-            return (
-              <>
-                <DateLine date={new Date(message.createDate)} />
-                <HeadMessage key={message._id} message={message} />
-              </>
-            );
-          }
+    <>
+      <div className="bg-zinc-700 flex-grow flex flex-col overflow-auto">
+        <div className="flex-grow flex flex-col justify-end ">
+          {messages.map((message, index) => {
+            if (index === 0) {
+              return (
+                <React.Fragment key={message._id}>
+                  <DateLine date={new Date(message.createDate)} />
+                  <HeadMessage message={message} />
+                </React.Fragment>
+              );
+            }
 
-          if (
-            !areSameDate(
-              new Date(message.createDate),
-              new Date(messages[index - 1].createDate)
-            )
-          ) {
-            return (
-              <>
-                <DateLine date={new Date(message.createDate)} />
-                <HeadMessage key={message._id} message={message} />
-              </>
-            );
-          }
+            if (
+              !areSameDate(
+                new Date(message.createDate),
+                new Date(messages[index - 1].createDate)
+              )
+            ) {
+              return (
+                <React.Fragment key={message._id}>
+                  <DateLine date={new Date(message.createDate)} />
+                  <HeadMessage message={message} />
+                </React.Fragment>
+              );
+            }
 
-          if (message.sender !== messages[index - 1].sender)
-            return <HeadMessage key={message._id} message={message} />;
+            if (message.sender !== messages[index - 1].sender)
+              return <HeadMessage key={message._id} message={message} />;
 
-          return <NormalMessage key={message._id} message={message} />;
-        })}
+            return <NormalMessage key={message._id} message={message} />;
+          })}
+        </div>
       </div>
       <ChatInput chatName={chatName} onMessageSend={onMessageSend} />
-    </div>
+    </>
   );
 }

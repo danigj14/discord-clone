@@ -1,3 +1,5 @@
+import handleResponse from "@/api/handleResponse";
+
 export default function acceptFriendRequest(authToken, requestId) {
   return fetch(
     `${import.meta.env.VITE_API_URL}/friend-requests/${requestId}/accept`,
@@ -7,5 +9,5 @@ export default function acceptFriendRequest(authToken, requestId) {
         Authorization: `Bearer ${authToken}`,
       },
     }
-  );
+  ).then(handleResponse);
 }

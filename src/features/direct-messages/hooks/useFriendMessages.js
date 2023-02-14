@@ -1,21 +1,23 @@
 import useAuth from "@/features/auth/hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import createPrivateMessage from "../api/createPrivateMessage";
 import getPrivateMessages from "../api/getPrivateMessages";
 
 export default function usePrivateMessages(friendId) {
   const { authToken } = useAuth();
-  const [messages, setMessages] = useState([]);
+  const queryClient = useQueryClient();
+  const messagesQuery = useQuery(["privateMessages", friendId], () =>
+    getPrivateMessages(authToken, friendId)
+  );
 
-  useEffect(() => {
-    getPrivateMessages(authToken, friendId).then(setMessages);
-  }, []);
+  const messagesMutation = useMutation({
+    mutationFn: ({ text }) => createPrivateMessage(authToken, friendId, text),
+    onSuccess: (data) =>
+      queryClient.setQueryData(["privateMessages", friendId], (oldData) => [
+        ...oldData,
+        data,
+      ]),
+  });
 
-  const createMessage = (text) => {
-    createPrivateMessage(authToken, friendId, text).then((newMessage) =>
-      setMessages([...messages, newMessage])
-    );
-  };
-
-  return { messages, createMessage };
+  return { messagesQuery, messagesMutation };
 }

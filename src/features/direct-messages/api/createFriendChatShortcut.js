@@ -1,3 +1,5 @@
+import handleResponse from "@/api/handleResponse";
+
 export default function createFriendChatShortcut(authToken, userId, friendId) {
   return fetch(
     `${import.meta.env.VITE_API_URL}/users/${userId}/friend-chat-shortcuts`,
@@ -9,5 +11,5 @@ export default function createFriendChatShortcut(authToken, userId, friendId) {
       },
       body: JSON.stringify({ friendId }),
     }
-  );
+  ).then(handleResponse);
 }

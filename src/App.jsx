@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import MainNav from "@/components/MainNav";
 import AuthContext from "@/contexts/AuthContext";
 import AuthScreen from "@/features/auth/components/AuthScreen";

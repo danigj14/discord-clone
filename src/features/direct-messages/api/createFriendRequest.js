@@ -1,3 +1,5 @@
+import handleResponse from "@/api/handleResponse";
+
 export default function createFriendRequest(authToken, email) {
   return fetch(`${import.meta.env.VITE_API_URL}/friend-requests`, {
     method: "POST",
@@ -6,5 +8,5 @@ export default function createFriendRequest(authToken, email) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email }),
-  }).then((response) => response.json());
+  }).then(handleResponse);
 }
