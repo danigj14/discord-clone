@@ -1,21 +1,20 @@
 import useAuth from "@/features/auth/hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import createFriendChatShortcut from "../api/createFriendChatShortcut";
 import getUserFriendChatShortcuts from "../api/getUserFriendChatShortcuts";
 
 export default function useFriendChatShortcuts() {
   const { authToken, userData } = useAuth();
-  const [shortcuts, setShortcuts] = useState([]);
 
-  useEffect(() => {
-    getUserFriendChatShortcuts(authToken, userData._id).then(setShortcuts);
-  }, []);
+  const friendChatShortcutsQuery = useQuery(
+    ["user", userData._id, "friendChatShortcuts"],
+    () => getUserFriendChatShortcuts(authToken, userData._id)
+  );
 
-  const addShortcut = (userId) => {
-    createFriendChatShortcut(authToken, userData._id, userId).then(() =>
-      setShortcuts([...shortcuts, userId])
-    );
-  };
+  const addFriendChatShortcutMutation = useMutation({
+    mutationFn: (userId) => createFriendChatShortcut(authToken, userData._id, userId),
+    onSuccess: () => friendChatShortcutsQuery.refetch(),
+  })
 
-  return { shortcuts, addShortcut };
+  return { friendChatShortcutsQuery, addFriendChatShortcutMutation };
 }

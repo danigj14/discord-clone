@@ -2,6 +2,26 @@ import DefaultAvatar from "@/components/DefaultAvatar";
 import UserAvatar from "@/components/UserAvatar";
 import useUserData from "@/hooks/useUserData";
 
+const isToday = (date) => {
+  const currentDate = new Date();
+
+  return (
+    currentDate.getFullYear() === date.getFullYear() &&
+    currentDate.getMonth() === date.getMonth() &&
+    currentDate.getDate() === date.getDate()
+  );
+};
+
+const isYesterday = (date) => {
+  const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
+
+  return (
+    yesterday.getFullYear() === date.getFullYear() &&
+    yesterday.getMonth() === date.getMonth() &&
+    yesterday.getDate() === date.getDate()
+  );
+};
+
 const formatDate = (date) => {
   const day = date.getDate();
   const month = date.getMonth() + 1; // Months start at 0, doing a +1 to make them start from 1 instead.
@@ -9,13 +29,18 @@ const formatDate = (date) => {
   const hour = date.getHours();
   const minute = date.getMinutes();
 
-  const dayString = day > 9 ? day : `0${day}`;
-  const monthString = month > 9 ? month : `0${month}`;
-
   const hourString = hour % 12;
   const minuteString = minute > 9 ? minute : `0${minute}`;
 
   const timeOfDay = hour >= 12 ? "PM" : "AM";
+
+  if (isToday(date))
+    return `Today at ${hourString}:${minuteString} ${timeOfDay}`;
+  if (isYesterday(date))
+    return `Yesterday at ${hourString}:${minuteString} ${timeOfDay}`;
+
+  const dayString = day > 9 ? day : `0${day}`;
+  const monthString = month > 9 ? month : `0${month}`;
 
   return `${dayString}/${monthString}/${year} ${hourString}:${minuteString} ${timeOfDay}`;
 };

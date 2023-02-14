@@ -7,21 +7,19 @@ import Navigation from "./Navigation";
 
 export default function DirectMessages() {
   const [selection, setSelection] = useState({ type: "FRIENDS" });
-  const { shortcuts, addShortcut } = useFriendChatShortcuts();
+  const { friendChatShortcutsQuery, addFriendChatShortcutMutation } =
+    useFriendChatShortcuts();
 
   const onFriendOpenChatClick = (friendId) => {
-    if (!shortcuts.includes(friendId)) addShortcut(friendId);
+    if (!friendChatShortcutsQuery.data?.includes(friendId))
+      addFriendChatShortcutMutation.mutate(friendId);
     setSelection({ type: "FRIEND_CHAT", friendId });
   };
 
   return (
     <>
       <div className="bg-zinc-800 w-64 h-full flex flex-col">
-        <Navigation
-          selection={selection}
-          onSelect={setSelection}
-          friendChatShortcuts={shortcuts}
-        />
+        <Navigation selection={selection} onSelect={setSelection} />
         <UserPanel />
       </div>
       <div className="bg-zinc-700 h-full flex-grow ">
