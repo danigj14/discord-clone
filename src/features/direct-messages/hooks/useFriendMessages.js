@@ -5,7 +5,7 @@ import getPrivateMessages from "../api/getPrivateMessages";
 
 export default function usePrivateMessages(friendId) {
   const { authToken } = useAuth();
-  
+
   const queryClient = useQueryClient();
 
   const messagesQuery = useQuery(["privateMessages", friendId], () =>

@@ -12,9 +12,10 @@ export default function useFriendChatShortcuts() {
   );
 
   const addFriendChatShortcutMutation = useMutation({
-    mutationFn: (userId) => createFriendChatShortcut(authToken, userData._id, userId),
+    mutationFn: (userId) =>
+      createFriendChatShortcut(authToken, userData._id, userId),
     onSuccess: () => friendChatShortcutsQuery.refetch(),
-  })
+  });
 
   return { friendChatShortcutsQuery, addFriendChatShortcutMutation };
 }

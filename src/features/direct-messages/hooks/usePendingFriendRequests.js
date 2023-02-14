@@ -1,32 +1,31 @@
 import useAuth from "@/features/auth/hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import getPendingFriendRequests from "../api/getPendingFriendRequests";
 import acceptFriendRequestService from "../api/acceptFriendRequest";
 import declineFriendRequestService from "../api/declineFriendRequest";
 
 export default function usePendingFriendRequests() {
   const { authToken } = useAuth();
-  const [pendingFriendRequests, setPendingFriendRequests] = useState([]);
 
-  useEffect(() => {
-    getPendingFriendRequests(authToken).then(setPendingFriendRequests);
-  }, []);
+  const pendingFriendRequestsQuery = useQuery(["friendRequests"], () =>
+    getPendingFriendRequests(authToken)
+  );
 
-  const acceptFriendRequest = (friendRequestId) => {
-    acceptFriendRequestService(authToken, friendRequestId).then(() =>
-      setPendingFriendRequests((currentList) =>
-        currentList.filter((request) => request._id !== friendRequestId)
-      )
-    );
+  const acceptFriendRequestMutation = useMutation({
+    mutationFn: (friendRequestId) =>
+      acceptFriendRequestService(authToken, friendRequestId),
+    onSuccess: () => pendingFriendRequestsQuery.refetch(),
+  });
+
+  const declineFriendRequestMutation = useMutation({
+    mutationFn: (friendRequestId) =>
+      declineFriendRequestService(authToken, friendRequestId),
+    onSuccess: () => pendingFriendRequestsQuery.refetch(),
+  });
+
+  return {
+    pendingFriendRequestsQuery,
+    acceptFriendRequestMutation,
+    declineFriendRequestMutation,
   };
-
-  const declineFriendRequest = (friendRequestId) => {
-    declineFriendRequestService(authToken, friendRequestId).then(() =>
-      setPendingFriendRequests((currentList) =>
-        currentList.filter((request) => request._id !== friendRequestId)
-      )
-    );
-  };
-
-  return { pendingFriendRequests, acceptFriendRequest, declineFriendRequest };
 }

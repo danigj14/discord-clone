@@ -8,7 +8,7 @@ export default function FriendChatShortcutList({
   onShortcutClick = () => {},
 }) {
   return (
-    <ul>
+    <ul className="flex flex-col gap-1">
       {shortcuts.map((shortcut) => (
         <FriendChatShortcutItem
           key={shortcut}

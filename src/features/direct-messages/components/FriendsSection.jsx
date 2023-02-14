@@ -13,8 +13,7 @@ import FriendRequestList from "./FriendRequestList";
 
 export default function FriendsSection({ onFriendOpenChatClick = () => {} }) {
   const [selection, setSelection] = useState("ONLINE");
-  const { pendingFriendRequests, acceptFriendRequest, declineFriendRequest } =
-    usePendingFriendRequests();
+  const { pendingFriendRequestsQuery } = usePendingFriendRequests();
 
   return (
     <div className="h-full">
@@ -36,7 +35,7 @@ export default function FriendsSection({ onFriendOpenChatClick = () => {} }) {
           />
           <HeaderButton
             name="Pending"
-            alert={pendingFriendRequests.length || ""}
+            alert={pendingFriendRequestsQuery.data?.length || ""}
             onClick={() => setSelection("PENDING")}
             selected={selection === "PENDING"}
           />
@@ -72,13 +71,7 @@ export default function FriendsSection({ onFriendOpenChatClick = () => {} }) {
         <FriendList onOpenChatClick={onFriendOpenChatClick} />
       )}
       {selection === "ADD_FRIEND" && <AddFriendSection />}
-      {selection === "PENDING" && (
-        <FriendRequestList
-          requests={pendingFriendRequests}
-          onRequestAccept={acceptFriendRequest}
-          onRequestDecline={declineFriendRequest}
-        />
-      )}
+      {selection === "PENDING" && <FriendRequestList />}
     </div>
   );
 }

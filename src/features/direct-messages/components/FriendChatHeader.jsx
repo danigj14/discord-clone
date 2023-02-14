@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function FriendChatHeader({ email }) {
   return (
-    <div className="flex h-14 py-3 px-4 items-center border-b-2 gap-5 divide-zinc-100 divide-opacity-20 border-zinc-800 border-opacity-50">
+    <div className="flex h-14 flex-shrink-0 py-3 px-4 items-center border-b-2 gap-5 divide-zinc-100 divide-opacity-20 border-zinc-800 border-opacity-50">
       <div className="flex-grow flex items-center">
         <FontAwesomeIcon className="text-zinc-400 text-lg" icon={faAt} />
         <span className="ml-2 font-bold text-sm">{email}</span>
