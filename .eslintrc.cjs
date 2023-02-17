@@ -27,5 +27,15 @@ module.exports = {
   rules: {
     "react/prop-types": "off", // Don't care about typing for now until I learn TypeScript
     "no-underscore-dangle": ["error", { allow: ["_id"] }], // Allow _id field from MongoDB documents
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+      },
+    ],
   },
 };
